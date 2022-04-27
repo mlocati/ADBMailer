@@ -311,6 +311,8 @@
             // 
             // cbxPdfGenerationLocale
             // 
+            this.cbxPdfGenerationLocale.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxPdfGenerationLocale.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxPdfGenerationLocale.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxPdfGenerationLocale.FormattingEnabled = true;

@@ -184,6 +184,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.dgvProgress);
             this.KeyPreview = true;
+            this.MinimumSize = new System.Drawing.Size(240, 150);
             this.Name = "frmProcess";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ADBMailer - Elaborazione";

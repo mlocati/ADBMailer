@@ -394,7 +394,7 @@
             this.Controls.Add(this.tsMainMenu);
             this.Controls.Add(this.tlpMain);
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(560, 250);
+            this.MinimumSize = new System.Drawing.Size(570, 300);
             this.Name = "frmMain";
             this.Text = "ADBMailer";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.frmMain_DragDrop);

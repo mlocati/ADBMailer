@@ -151,6 +151,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.tnOk);
+            this.MinimumSize = new System.Drawing.Size(400, 170);
             this.Name = "frmMapDocs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ADBMailer - Mappa documenti";

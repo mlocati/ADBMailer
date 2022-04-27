@@ -107,6 +107,7 @@
             this.Controls.Add(this.lblRecipient);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 190);
             this.Name = "frmAskTestData";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ADBMailer - Invio email di prova";
