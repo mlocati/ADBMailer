@@ -64,17 +64,15 @@ namespace ADBMailer
             {
                 throw new Exception($"Il foglio nel documento di Excel {excelFile} è vuoto");
             }
-            var headerRow = sheet.Dimension.Start.Row;
-            var firstColumn = sheet.Dimension.Start.Column;
-            var lastColumn = sheet.Dimension.End.Column;
-            var list = new List<Header>(lastColumn - firstColumn + 1);
-            for (var column = firstColumn; column <= lastColumn; column++)
+            var size = new ExcelSheetRange(sheet);
+            var list = new List<Header>(size.LastColumn - size.FirstColumn + 1);
+            for (var column = size.FirstColumn; column <= size.LastColumn; column++)
             {
-                string value = sheet.Cells[headerRow, column].GetValue<string>();
+                string value = sheet.Cells[size.HeaderRow, column].GetValue<string>();
                 value = value == null ? "" : value.Trim();
                 if (value.Length != 0)
                 {
-                    list.Add(new Header(headerRow, column, value));
+                    list.Add(new Header(size.HeaderRow, column, value));
                 }
             }
             if (list.Count == 0)

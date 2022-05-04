@@ -39,11 +39,13 @@ namespace ADBMailer
         private readonly Mapping Mapping;
         private ExcelPackage ExcelPackage;
         private ExcelWorksheet ExcelSheet;
-        private ExcelAddressBase ExcelDimension;
+        private ExcelSheetRange _excelRange;
+        public ExcelSheetRange ExcelRange
+        {
+            get => this._excelRange;
+        }
         private WordprocessingDocument WordDocument;
         private MainDocumentPart WordDocumentPart;
-        public readonly int FirstExcelDataRow;
-        public readonly int LastExcelDataRow;
 
         public FieldFiller(string sourceExcelFile, string sourceWordFile, bool requireRecipients, Mapping? configuredMapping)
         {
@@ -54,7 +56,7 @@ namespace ADBMailer
                 this.WordFile = Program.Temp.GenerateNewFileName("docx");
                 File.Copy(sourceWordFile, this.WordFile, false);
                 this.OpenExcelFile();
-                if (this.ExcelPackage == null || this.ExcelSheet == null || this.ExcelDimension == null) throw new InvalidOperationException();
+                if (this.ExcelPackage == null || this.ExcelSheet == null || this._excelRange == null) throw new InvalidOperationException();
                 this.OpenWordFile();
                 if (this.WordDocument == null || this.WordDocumentPart == null) throw new InvalidOperationException();
                 var excelHeaders = new ExcelMapper().GetColumnHeaders(sourceExcelFile, this.ExcelSheet);
@@ -65,15 +67,6 @@ namespace ADBMailer
                     this.Mapping.AutoAssociate();
                 }
                 this.CheckMapping(requireRecipients);
-                this.FirstExcelDataRow = 0;
-                foreach (var excelHeader in this.Mapping.ExcelHeaders)
-                {
-                    if (this.FirstExcelDataRow <= excelHeader.Row)
-                    {
-                        this.FirstExcelDataRow = excelHeader.Row + 1;
-                    }
-                }
-                this.LastExcelDataRow = this.ExcelDimension.End.Row;
             }
             catch
             {
@@ -115,7 +108,7 @@ namespace ADBMailer
 
         public IEnumerable<Result> Fill(FilledRowConsumer.IFilledRowConsumer forConsumer, WarningsListener? warningsListener)
         {
-            for (var excelRow = this.FirstExcelDataRow; excelRow <= this.LastExcelDataRow; excelRow++)
+            for (var excelRow = this.ExcelRange.FirstDataRow; excelRow <= this.ExcelRange.LastDataRow; excelRow++)
             {
                 var result = this.Fill(excelRow, forConsumer, warningsListener);
                 if (result != null)
@@ -168,10 +161,9 @@ namespace ADBMailer
 
         private bool IsRowEmpty(int excelRow)
         {
-            for (var excelColumn = this.ExcelDimension.Start.Column; excelColumn <= this.ExcelDimension.End.Column; excelColumn++)
+            for (var excelColumn = this.ExcelRange.FirstColumn; excelColumn <= this.ExcelRange.LastColumn; excelColumn++)
             {
-                var value = this.ExcelSheet.Cells[excelRow, excelColumn]?.Value?.ToString();
-                if (!string.IsNullOrEmpty(value))
+                if (!ExcelSheetRange.IsCellEmpty(this.ExcelSheet, excelRow, excelColumn))
                 {
                     return false;
                 }
@@ -322,7 +314,7 @@ namespace ADBMailer
             {
                 throw new Exception($"Il foglio nel documento di Excel {this.ExcelFile} è vuoto");
             }
-            this.ExcelDimension = this.ExcelSheet.Dimension;
+            this._excelRange = new ExcelSheetRange(this.ExcelSheet);
         }
 
         private void OpenWordFile()

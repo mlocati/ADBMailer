@@ -113,7 +113,7 @@ namespace ADBMailer
                 using var filler = new FieldFiller(this.ExcelFile, this.WordFile, false, this.Mapping);
                 this.RememberDocsDirectories();
                 int? testExcelDataRow = null;
-                using (var frm = new frmAskTestData(filler.FirstExcelDataRow, filler.LastExcelDataRow, false))
+                using (var frm = new frmAskTestData(filler.ExcelRange.FirstDataRow, filler.ExcelRange.LastDataRow, false))
                 {
                     if (frm.ShowDialog(this) == DialogResult.OK && frm.Result != null)
                     {
@@ -200,7 +200,7 @@ namespace ADBMailer
                 int? testExcelDataRow = null;
                 if (test)
                 {
-                    using (var frm = new frmAskTestData(filler.FirstExcelDataRow, filler.LastExcelDataRow, true))
+                    using (var frm = new frmAskTestData(filler.ExcelRange.FirstDataRow, filler.ExcelRange.LastDataRow, true))
                     {
                         if (frm.ShowDialog(this) == DialogResult.OK && frm.Result != null)
                         {

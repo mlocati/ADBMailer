@@ -239,9 +239,9 @@ namespace ADBMailer
             {
                 this.MinimumProgressValue = this.pbProgress.Minimum = 0;
                 this.MaximumProgressValue = this.pbProgress.Maximum = int.MaxValue;
-                this.ProgressValue = this.pbProgress.Value = this.Filler.FirstExcelDataRow;
-                this.MinimumProgressValue = this.pbProgress.Minimum = this.Filler.FirstExcelDataRow;
-                this.MaximumProgressValue = this.pbProgress.Maximum = 1 + this.Filler.LastExcelDataRow;
+                this.ProgressValue = this.pbProgress.Value = this.Filler.ExcelRange.FirstDataRow;
+                this.MinimumProgressValue = this.pbProgress.Minimum = this.Filler.ExcelRange.FirstDataRow;
+                this.MaximumProgressValue = this.pbProgress.Maximum = 1 + this.Filler.ExcelRange.LastDataRow;
                 this.pbProgress.Visible = true;
                 this.ProgressState = CustomControls.ThumbnailProgressState.Normal;
             }
@@ -339,7 +339,7 @@ namespace ADBMailer
             ProcessingLine line;
             if (previousLine == null)
             {
-                line = new ProcessingLine(this, this.Consumer.ForceDataRow ?? this.Filler.FirstExcelDataRow);
+                line = new ProcessingLine(this, this.Consumer.ForceDataRow ?? this.Filler.ExcelRange.FirstDataRow);
             }
             else if (this.Consumer.ForceDataRow != null)
             {
@@ -348,7 +348,7 @@ namespace ADBMailer
             else
             {
                 line = new ProcessingLine(this, previousLine.Row + 1);
-                if (line.Row > this.Filler.LastExcelDataRow)
+                if (line.Row > this.Filler.ExcelRange.LastDataRow)
                 {
                     return;
                 }
