@@ -11,14 +11,14 @@ namespace ADBMailer
             private bool _disposed = false;
             public readonly int ExcelRow;
             public readonly MailboxAddress[]? Recipients;
-            public readonly string? MemberName;
+            public readonly string? PDFFileName;
             public readonly string FilledWordDocument;
 
-            public Result(int excelRow, MailboxAddress[]? recipients, string? memberName, string filledWordDocument)
+            public Result(int excelRow, MailboxAddress[]? recipients, string? pdfFilename, string filledWordDocument)
             {
                 this.ExcelRow = excelRow;
                 this.Recipients = recipients;
-                this.MemberName = memberName;
+                this.PDFFileName = pdfFilename;
                 this.FilledWordDocument = filledWordDocument;
             }
 
@@ -138,25 +138,25 @@ namespace ADBMailer
             {
                 recipients = null;
             }
-            string? memberName;
-            if (forConsumer.UseMemberName)
+            string? pdfFilename;
+            if (forConsumer.UsePDFFilename)
             {
-                memberName = this.ExtractMemberName(excelRow, warningsListener);
-                if (memberName == null)
+                pdfFilename = this.ExtractPDFFilename(excelRow, warningsListener);
+                if (pdfFilename == null)
                 {
                     return null;
                 }
             }
             else
             {
-                memberName = null;
+                pdfFilename = null;
             }
             var filledWordDocument = this.FillPlaceholders(excelRow, warningsListener);
             if (filledWordDocument.Length == 0)
             {
                 return null;
             }
-            return new Result(excelRow, recipients, memberName, filledWordDocument);
+            return new Result(excelRow, recipients, pdfFilename, filledWordDocument);
         }
 
         private bool IsRowEmpty(int excelRow)
@@ -212,26 +212,26 @@ namespace ADBMailer
             return result.ToArray();
         }
 
-        private string? ExtractMemberName(int excelRow, WarningsListener? _)
+        private string? ExtractPDFFilename(int excelRow, WarningsListener? _)
         {
-            string? rawMemberName = null;
-            if (this.Mapping.MemberNameField != null)
+            string? rawPDFFilename = null;
+            if (this.Mapping.PDFFilenameField != null)
             {
                 try
                 {
-                    var cell = this.ExcelSheet.Cells[excelRow, this.Mapping.MemberNameField.Column];
+                    var cell = this.ExcelSheet.Cells[excelRow, this.Mapping.PDFFilenameField.Column];
                     if (cell != null)
                     {
-                        rawMemberName = cell.GetValue<string>();
-                        if (rawMemberName != null)
+                        rawPDFFilename = cell.GetValue<string>();
+                        if (rawPDFFilename != null)
                         {
-                            rawMemberName = rawMemberName.Trim();
+                            rawPDFFilename = rawPDFFilename.Trim();
                         }
                     }
                 }
                 catch { }
             }
-            return string.IsNullOrEmpty(rawMemberName) ? "" : rawMemberName;
+            return string.IsNullOrEmpty(rawPDFFilename) ? "" : rawPDFFilename;
         }
 
         private string FillPlaceholders(int excelRow, WarningsListener? warningsListener)

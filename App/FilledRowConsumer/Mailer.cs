@@ -17,7 +17,7 @@ namespace ADBMailer.FilledRowConsumer
 
         public bool GeneratesPermamentFiles => false;
 
-        public bool UseMemberName => false;
+        public bool UsePDFFilename => false;
 
         public string ProcessingWindowTitle => "Invio email";
 

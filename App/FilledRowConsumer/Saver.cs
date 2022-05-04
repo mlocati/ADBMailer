@@ -11,7 +11,7 @@ namespace ADBMailer.FilledRowConsumer
 
         public bool GeneratesPermamentFiles => true;
 
-        public bool UseMemberName => true;
+        public bool UsePDFFilename => true;
 
         public string ProcessingWindowTitle => "Generazione PDF";
 
@@ -24,16 +24,16 @@ namespace ADBMailer.FilledRowConsumer
 
         public IFilledRowConsumer.Result Process(FieldFiller.Result filled, byte[] pdfBytes, IFilledRowConsumer.StatusAdvancer statusAdvancer)
         {
-            var memberName = FixMemberName(filled.MemberName);
-            if (memberName.Length == 0)
+            var pdfFilenameBase = FixPDFFilename(filled.PDFFileName);
+            if (pdfFilenameBase.Length == 0)
             {
-                memberName = $"SenzaNome{filled.ExcelRow}";
+                pdfFilenameBase = $"SenzaNome{filled.ExcelRow}";
             }
             string pdfFilename;
             string fullPdfFilename;
             for (var i = 0; ; i++)
             {
-                pdfFilename = memberName + (i == 0 ? "" : $"-{i}") + ".pdf";
+                pdfFilename = pdfFilenameBase + (i == 0 ? "" : $"-{i}") + ".pdf";
                 fullPdfFilename = Path.Combine(this.DestinationDirectory.FullName, pdfFilename);
                 if (!File.Exists(fullPdfFilename) && !Directory.Exists(fullPdfFilename))
                 {
@@ -45,15 +45,15 @@ namespace ADBMailer.FilledRowConsumer
             return new IFilledRowConsumer.Result(new FileInfo(fullPdfFilename));
         }
 
-        private static Regex? _fixMemberNameRegex = null;
+        private static Regex? _fixPDFFilenameRegex = null;
 
-        private static Regex FixMemberNameRegex
+        private static Regex FixPDFFilenameRegex
         {
             get
             {
-                if (_fixMemberNameRegex != null)
+                if (_fixPDFFilenameRegex != null)
                 {
-                    return _fixMemberNameRegex;
+                    return _fixPDFFilenameRegex;
                 }
                 var pattern = new StringBuilder("[");
                 pattern.Append(Regex.Escape("-"));
@@ -62,17 +62,17 @@ namespace ADBMailer.FilledRowConsumer
                     pattern.Append(Regex.Escape(c.ToString()));
                 }
                 pattern.Append("]+");
-                return _fixMemberNameRegex = new Regex(pattern.ToString(), RegexOptions.CultureInvariant | RegexOptions.Compiled);
+                return _fixPDFFilenameRegex = new Regex(pattern.ToString(), RegexOptions.CultureInvariant | RegexOptions.Compiled);
             }
         }
 
-        private static string FixMemberName(string? raw)
+        private static string FixPDFFilename(string? raw)
         {
             if (string.IsNullOrEmpty(raw))
             {
                 return "";
             }
-            return FixMemberNameRegex.Replace(raw, "-").Trim('-');
+            return FixPDFFilenameRegex.Replace(raw, "-").Trim('-');
         }
     }
 }

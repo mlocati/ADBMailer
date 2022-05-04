@@ -36,7 +36,7 @@
 
         public bool GeneratesPermamentFiles { get; }
 
-        public bool UseMemberName { get; }
+        public bool UsePDFFilename { get; }
 
         public Result Process(FieldFiller.Result filled, byte[] pdfBytes, StatusAdvancer statusAdvancer);
     }

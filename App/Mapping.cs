@@ -7,7 +7,7 @@ namespace ADBMailer
         public readonly ExcelMapper.Header[] ExcelHeaders;
         public readonly WordMapper.Field[] WordFields;
         private ExcelMapper.Header[] _recipientFields;
-        private ExcelMapper.Header? _memberNameField;
+        private ExcelMapper.Header? _pdfFilenameField;
 
         public ExcelMapper.Header[] RecipientFields
         {
@@ -15,10 +15,10 @@ namespace ADBMailer
             set => this._recipientFields = value;
         }
 
-        public ExcelMapper.Header? MemberNameField
+        public ExcelMapper.Header? PDFFilenameField
         {
-            get => this._memberNameField;
-            set => this._memberNameField = value;
+            get => this._pdfFilenameField;
+            set => this._pdfFilenameField = value;
         }
 
         public readonly Dictionary<string, ExcelMapper.Header?> SelectedWordFields;
@@ -40,10 +40,10 @@ namespace ADBMailer
                 }
             }
             this._recipientFields = recipientFields.ToArray();
-            this._memberNameField = null;
-            if (previousMapping != null && previousMapping.MemberNameField != null)
+            this._pdfFilenameField = null;
+            if (previousMapping != null && previousMapping.PDFFilenameField != null)
             {
-                this._memberNameField = this.FindExcelHeader(previousMapping.MemberNameField);
+                this._pdfFilenameField = this.FindExcelHeader(previousMapping.PDFFilenameField);
             }
             var selectedWordFields = new Dictionary<string, ExcelMapper.Header?>();
             foreach (var wordField in this.WordFields)
@@ -84,13 +84,13 @@ namespace ADBMailer
                     this.RecipientFields = recipientFields.ToArray();
                 }
             }
-            if (this.MemberNameField == null)
+            if (this.PDFFilenameField == null)
             {
                 foreach (var excelHeader in this.ExcelHeaders)
                 {
                     if (excelHeader.Name.Equals("socio", StringComparison.OrdinalIgnoreCase))
                     {
-                        this.MemberNameField = excelHeader;
+                        this.PDFFilenameField = excelHeader;
                         break;
                     }
                 }

@@ -3,7 +3,7 @@
     public partial class frmMapDocs : Form
     {
         private const string FIELD_EMAIL_RECIPIENTS = "Destinatari email";
-        private const string FIELD_MEMBER_NAME = "Nome socio";
+        private const string FIELD_PDF_FILENAME = "Nome file PDF";
 
         public readonly Mapping Mapping;
 
@@ -36,9 +36,9 @@
                         this.lnkClearSelected.Visible = this.lsbHeader.Visible = true;
                         break;
 
-                    case FIELD_MEMBER_NAME:
+                    case FIELD_PDF_FILENAME:
                         this.lsbHeader.SelectionMode = SelectionMode.One;
-                        this.lsbHeader.SelectedItem = this.Mapping.MemberNameField;
+                        this.lsbHeader.SelectedItem = this.Mapping.PDFFilenameField;
                         this.lnkClearSelected.Visible = this.lsbHeader.Visible = true;
                         break;
                 }
@@ -62,7 +62,7 @@
             this.lsbField.DrawMode = DrawMode.OwnerDrawVariable;
             this.lsbField.Items.Clear();
             this.lsbField.Items.Add(FIELD_EMAIL_RECIPIENTS);
-            this.lsbField.Items.Add(FIELD_MEMBER_NAME);
+            this.lsbField.Items.Add(FIELD_PDF_FILENAME);
             this.lsbField.Items.AddRange(this.Mapping.WordFields);
             this.lsbHeader.Items.AddRange(this.Mapping.ExcelHeaders);
             this.UpdateSelectedField();
@@ -107,8 +107,8 @@
                         this.Mapping.RecipientFields = this.lsbHeader.SelectedItems.Cast<ExcelMapper.Header>().ToArray();
                         break;
 
-                    case FIELD_MEMBER_NAME:
-                        this.Mapping.MemberNameField = this.lsbHeader.SelectedItem as ExcelMapper.Header;
+                    case FIELD_PDF_FILENAME:
+                        this.Mapping.PDFFilenameField = this.lsbHeader.SelectedItem as ExcelMapper.Header;
                         break;
                 }
                 return;
@@ -124,10 +124,10 @@
                 MessageBox.Show(this, "Selezionare almeno un campo contenente l'indirizzo email del destinatario", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (this.Mapping.MemberNameField == null)
+            if (this.Mapping.PDFFilenameField == null)
             {
-                this.lsbField.SelectedItem = FIELD_MEMBER_NAME;
-                MessageBox.Show(this, "Selezionare il campo contenente il nome del socio.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.lsbField.SelectedItem = FIELD_PDF_FILENAME;
+                MessageBox.Show(this, "Selezionare il campo contenente il nome del file PDF.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             foreach (var wordField in this.Mapping.WordFields)
@@ -160,8 +160,8 @@
                     case FIELD_EMAIL_RECIPIENTS:
                         return this.Mapping.RecipientFields.Length == 0;
 
-                    case FIELD_MEMBER_NAME:
-                        return this.Mapping.MemberNameField == null;
+                    case FIELD_PDF_FILENAME:
+                        return this.Mapping.PDFFilenameField == null;
                 }
             }
             return false;

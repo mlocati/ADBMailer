@@ -30,7 +30,7 @@ namespace ADBMailer.FilledRowConsumer
 
         public bool GeneratesPermamentFiles => false;
 
-        public bool UseMemberName => true;
+        public bool UsePDFFilename => true;
 
         public string ProcessingWindowTitle => "Generazione PDF di test";
 
