@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Reflection;
 
 namespace ADBMailer
 {
@@ -20,6 +21,9 @@ namespace ADBMailer
 
         private static Icon? _exeIcon = null;
         private static bool _exeIconExtracted = false;
+
+        private static Version? _version = null;
+        private static bool _versionExtracted = false;
 
         [STAThread]
         private static void Main()
@@ -64,6 +68,24 @@ namespace ADBMailer
                 catch { }
                 _exeIconExtracted = true;
                 return _exeIcon;
+            }
+        }
+
+        public static Version? Version
+        {
+            get
+            {
+                if (_versionExtracted)
+                {
+                    return _version;
+                }
+                try
+                {
+                    _version = Assembly.GetExecutingAssembly().GetName().Version;
+                }
+                catch { }
+                _versionExtracted = true;
+                return _version;
             }
         }
     }

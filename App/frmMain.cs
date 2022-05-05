@@ -43,6 +43,10 @@ namespace ADBMailer
             {
                 this.Icon = Program.ExeIcon;
             }
+            if (Program.Version != null)
+            {
+                this.Text += " v" + Program.Version.ToString(3);
+            }
             this.ExcelFile = "";
             this.WordFile = "";
             string dir;
