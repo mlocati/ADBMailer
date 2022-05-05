@@ -24,6 +24,7 @@ namespace ADBMailer
         private const string KEY_SMTP_USERNAME = "SmtpUsername";
         private const string KEY_SMTP_PASSWORD = "SmtpPassword";
         private const string KEY_SMTP_HELODOMAIN = "SmtpHeloDomain";
+        private const string KEY_GITHUB_TOKEN = "GithubToken";
 
         private static Configuration? _configFile = null;
 
@@ -197,6 +198,12 @@ namespace ADBMailer
                 SaveSetting(KEY_SMTP_HELODOMAIN, value.HeloDomain);
                 _smtp = value;
             }
+        }
+
+        public static string GitHubToken
+        {
+            get => GetSettings(KEY_GITHUB_TOKEN);
+            set => SaveSetting(KEY_GITHUB_TOKEN, value);
         }
 
         private static string GetSettings(string key)

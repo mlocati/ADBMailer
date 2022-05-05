@@ -477,6 +477,17 @@ namespace ADBMailer
             new frmHelp().Show(this);
         }
 
+        private void tsbAutoupdate_Click(object sender, EventArgs e)
+        {
+            if (Program.Version == null)
+            {
+                MessageBox.Show(this, $"Non è stato possibile rilevare la versione del programma in esecuzione.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            using var form = new frmUpdater(Program.Version);
+            form.ShowDialog(this);
+        }
+
         private void frmMain_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)

@@ -40,10 +40,12 @@ namespace ADBMailer
         private ExcelPackage ExcelPackage;
         private ExcelWorksheet ExcelSheet;
         private ExcelSheetRange _excelRange;
+
         public ExcelSheetRange ExcelRange
         {
             get => this._excelRange;
         }
+
         private WordprocessingDocument WordDocument;
         private MainDocumentPart WordDocumentPart;
 

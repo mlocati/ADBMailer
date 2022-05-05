@@ -61,6 +61,7 @@
             this.tsbOptions = new System.Windows.Forms.ToolStripButton();
             this.tssSep3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbHelp = new System.Windows.Forms.ToolStripButton();
+            this.tsbAutoupdate = new System.Windows.Forms.ToolStripButton();
             this.tlpMain.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -277,7 +278,8 @@
             this.tssSep2,
             this.tsbOptions,
             this.tssSep3,
-            this.tsbHelp});
+            this.tsbHelp,
+            this.tsbAutoupdate});
             this.tsMainMenu.Location = new System.Drawing.Point(0, 0);
             this.tsMainMenu.Name = "tsMainMenu";
             this.tsMainMenu.Size = new System.Drawing.Size(762, 70);
@@ -385,6 +387,17 @@
             this.tsbHelp.ToolTipText = "Guida (F1)";
             this.tsbHelp.Click += new System.EventHandler(this.tsbHelp_Click);
             // 
+            // tsbAutoupdate
+            // 
+            this.tsbAutoupdate.Image = ((System.Drawing.Image)(resources.GetObject("tsbAutoupdate.Image")));
+            this.tsbAutoupdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbAutoupdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAutoupdate.Name = "tsbAutoupdate";
+            this.tsbAutoupdate.Size = new System.Drawing.Size(83, 67);
+            this.tsbAutoupdate.Text = "Aggiorna app";
+            this.tsbAutoupdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbAutoupdate.Click += new System.EventHandler(this.tsbAutoupdate_Click);
+            // 
             // frmMain
             // 
             this.AllowDrop = true;
@@ -446,5 +459,6 @@
         private ToolStripButton tsbSavePdfTest;
         private ToolStripSeparator tssSep3;
         private ToolStripButton tsbHelp;
+        private ToolStripButton tsbAutoupdate;
     }
 }
