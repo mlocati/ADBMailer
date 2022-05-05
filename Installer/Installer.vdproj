@@ -31,7 +31,7 @@
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
-        "Compression" = "3:2"
+        "Compression" = "3:3"
         "SignOutput" = "11:FALSE"
         "CertificateFile" = "8:"
         "PrivateKeyFile" = "8:"
@@ -63,7 +63,7 @@
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
-        "Compression" = "3:2"
+        "Compression" = "3:3"
         "SignOutput" = "11:FALSE"
         "CertificateFile" = "8:"
         "PrivateKeyFile" = "8:"
@@ -146,7 +146,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_7C78D32A10C34C0A91CA8B7F24525C61"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFiles64Folder]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -173,7 +173,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ADBMailer"
         "ProductCode" = "8:{D6696FAA-A2FA-4686-902F-A3DAE9DBA877}"
-        "PackageCode" = "8:{28655360-1E9F-48C4-8C62-4D610E4B177B}"
+        "PackageCode" = "8:{172CC56B-9C80-4D1F-B368-F6BF7D585902}"
         "UpgradeCode" = "8:{70D11C82-504F-4381-8681-00168162DC22}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -512,7 +512,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_29E287A5217745F18E9F5D59A78A06E4"
             {
-            "SourcePath" = "8:..\\App\\obj\\Release\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\App\\obj\\Release\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7C78D32A10C34C0A91CA8B7F24525C61"
