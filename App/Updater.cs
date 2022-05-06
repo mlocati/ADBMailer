@@ -1,4 +1,6 @@
-﻿using System.IO.Compression;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.IO.Compression;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection;
@@ -14,6 +16,70 @@ namespace ADBMailer
 
         public class TokenInvalidException : Exception
         { }
+
+        public class UpdaterScript : IDisposable
+        {
+            private bool Disposed = false;
+            private bool Executed = false;
+            private readonly FileInfo BatchFile;
+            private readonly FileInfo MsiFile;
+
+            public UpdaterScript(FileInfo batchFile, FileInfo msiFile)
+            {
+                this.BatchFile = batchFile;
+                this.MsiFile = msiFile;
+            }
+
+            public bool Execute()
+            {
+                if (this.Disposed)
+                {
+                    throw new ObjectDisposedException(nameof(UpdaterScript));
+                }
+                var psi = new ProcessStartInfo()
+                {
+                    FileName = this.BatchFile.FullName,
+                    UseShellExecute = true,
+                    Verb = "runas",
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                };
+                try
+                {
+                    var proc = Process.Start(psi);
+                    if (proc == null)
+                    {
+                        throw new Exception("Errore durante l'avvio dell'aggiornamento");
+                    }
+                }
+                catch (Win32Exception x)
+                {
+                    if (x.NativeErrorCode != 1223 /* ERROR_CANCELLED */ )
+                    {
+                        return false;
+                    }
+                    throw;
+                }
+
+                this.Executed = true;
+                return true;
+            }
+
+            public void Dispose()
+            {
+                if (this.Disposed)
+                {
+                    return;
+                }
+                GC.SuppressFinalize(this);
+                if (this.Executed == false)
+                {
+                    try { this.BatchFile.Delete(); } catch { }
+                    try { this.MsiFile.Delete(); } catch { }
+                }
+                this.Disposed = true;
+            }
+        }
 
         public delegate FileInfo Downloader(Uri url);
 
@@ -250,7 +316,7 @@ START /B """" ""%ComSpec%"" /C DEL /Q ""%~f0""
             return response.StatusCode.ToString();
         }
 
-        public static FileInfo BuildUpdateScript(FileInfo zipFile)
+        public static UpdaterScript BuildUpdateScript(FileInfo zipFile)
         {
             FileInfo? msiFile = null;
             using var zip = ZipFile.OpenRead(zipFile.FullName);
@@ -312,7 +378,7 @@ START /B """" ""%ComSpec%"" /C DEL /Q ""%~f0""
                     try { File.Delete(tempBAT); } catch { }
                     throw;
                 }
-                return new FileInfo(tempBAT);
+                return new UpdaterScript(new FileInfo(tempBAT), new FileInfo(tempMSI));
             }
             finally
             {

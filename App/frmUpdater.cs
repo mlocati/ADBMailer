@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics;
 
 namespace ADBMailer
 {
@@ -13,7 +12,6 @@ namespace ADBMailer
             LatestVersionNotNewer,
             LatestVersionNewerAskingUser,
             Preparing,
-            PreparationFailed,
             PreparationCompleted,
         }
 
@@ -219,38 +217,33 @@ namespace ADBMailer
 
         private void bgwPrepare_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Result is not FileInfo batFile)
+            if (e.Result is not Updater.UpdaterScript updaterScript)
             {
                 if (e.Result is not Exception x)
                 {
                     x = new Exception("Errore durante la preparazione dell'aggiornamento");
                 }
-                this.State = States.PreparationFailed;
+                this.State = States.LatestVersionNewerAskingUser;
                 MessageBox.Show(this, x.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             this.State = States.PreparationCompleted;
             try
             {
-                var psi = new ProcessStartInfo()
+                if (!updaterScript.Execute())
                 {
-                    FileName = batFile.FullName,
-                    UseShellExecute = true,
-                    Verb = "runas",
-                    CreateNoWindow = true,
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                };
-                var proc = Process.Start(psi);
-                if (proc == null)
-                {
-                    throw new Exception("Errore durante l'avvio dell'aggiornamento");
+                    return;
                 }
             }
             catch (Exception x)
             {
-                this.State = States.PreparationFailed;
+                this.State = States.LatestVersionNewerAskingUser;
                 MessageBox.Show(this, x.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+            finally
+            {
+                updaterScript.Dispose();
             }
             Application.Exit();
         }
