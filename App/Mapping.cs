@@ -86,30 +86,19 @@ namespace ADBMailer
             }
             if (this.PDFFilenameField == null)
             {
-                var pdfNameField = Options.LastPdfNameField;
-                foreach (var excelHeader in this.ExcelHeaders)
-                {
-                    if (excelHeader.Name.Equals(pdfNameField, StringComparison.OrdinalIgnoreCase))
-                    {
-                        this.PDFFilenameField = excelHeader;
-                        break;
-                    }
-                }
+                this.PDFFilenameField = this.FindCorrespondingExcelHeader(Options.LastPdfNameField);
             }
+            var missingWordFields = new List<string>();
             foreach (var kv in this.SelectedWordFields)
             {
-                if (kv.Value != null)
+                if (kv.Value == null)
                 {
-                    continue;
+                    missingWordFields.Add(kv.Key);
                 }
-                foreach (var excelHeader in this.ExcelHeaders)
-                {
-                    if (string.Compare(kv.Key, excelHeader.Name, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        this.SelectedWordFields[kv.Key] = excelHeader;
-                        break;
-                    }
-                }
+            }
+            foreach (var missingWordField in missingWordFields)
+            {
+                this.SelectedWordFields[missingWordField] = this.FindCorrespondingExcelHeader(missingWordField);
             }
         }
 
@@ -125,6 +114,41 @@ namespace ADBMailer
             foreach (var excelHeader in this.ExcelHeaders)
             {
                 if (excelHeader.Name == oldExcelHeader.Name)
+                {
+                    return excelHeader;
+                }
+            }
+            return null;
+        }
+
+        private static string SimplifyText(string text)
+        {
+            var simplified = Regex.Replace(text, "[^A-Za-z0-9]+", "_");
+            return Regex.Replace(simplified, "^_+|_+$", "");
+        }
+
+        private ExcelMapper.Header? FindCorrespondingExcelHeader(string field)
+        {
+            if (field.Length == 0)
+            {
+                return null;
+            }
+            foreach (var excelHeader in this.ExcelHeaders)
+            {
+                if (field.Equals(excelHeader.Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    return excelHeader;
+                }
+            }
+            var fieldSimplified = SimplifyText(field);
+            if (fieldSimplified.Length == 0)
+            {
+                return null;
+            }
+            foreach (var excelHeader in this.ExcelHeaders)
+            {
+                var excelHeaderNameSimplified = SimplifyText(excelHeader.Name);
+                if (fieldSimplified.Equals(excelHeaderNameSimplified, StringComparison.OrdinalIgnoreCase))
                 {
                     return excelHeader;
                 }
