@@ -65,7 +65,7 @@ namespace ADBMailer
             this.SelectedWordFields = selectedWordFields;
         }
 
-        private static readonly Regex RxIsEmailHeader = new(@"^e[\-.]?mail\s*\d*$", RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
+        private static readonly Regex RxIsEmailHeader = new(@"^(e[\-.]?)?mail[^a-z]*\d*$", RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
 
         public void AutoAssociate()
         {
