@@ -130,6 +130,7 @@
                 MessageBox.Show(this, "Selezionare il campo contenente il nome del file PDF.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            Options.LastPdfNameField = this.Mapping.PDFFilenameField.Name;
             foreach (var wordField in this.Mapping.WordFields)
             {
                 if (this.Mapping.SelectedWordFields[wordField.Name] == null)

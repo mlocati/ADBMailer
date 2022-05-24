@@ -86,9 +86,10 @@ namespace ADBMailer
             }
             if (this.PDFFilenameField == null)
             {
+                var pdfNameField = Options.LastPdfNameField;
                 foreach (var excelHeader in this.ExcelHeaders)
                 {
-                    if (excelHeader.Name.Equals("socio", StringComparison.OrdinalIgnoreCase))
+                    if (excelHeader.Name.Equals(pdfNameField, StringComparison.OrdinalIgnoreCase))
                     {
                         this.PDFFilenameField = excelHeader;
                         break;

@@ -7,12 +7,14 @@ namespace ADBMailer
 {
     internal static class Options
     {
+        private const string DEFAULT_LAST_PDFNAMEFIELD = "socio";
         public const string GENERATEPDFWITH_MICROSOFTWORD = "Microsoft Word";
         public const string GENERATEPDFWITH_LIBREOFFICE = "LibreOffice";
         private const string KEY_LAST_EXCELFILES_DIR = "ExcelFilesDirectory";
         private const string KEY_LAST_WORDFILES_DIR = "WordFilesDirectory";
         private const string KEY_LAST_PDFOUTPUT_DIR = "LastPdfOutputDirectory";
         private const string KEY_LAST_TESTRECIPIENT = "LastTestRecipient";
+        private const string KEY_LAST_PDFNAMEFIELD = "LastPdfNameField";
         private const string KEY_KEY_GENERATELOCALE = "GeneratePdfLocale";
         private const string KEY_GENERATEPDFWITH = "GeneratePdfWith";
         private const string KEY_LIBREOFFICE_SOFFICECOMPATH = "LibreOfficeSofficePath";
@@ -130,6 +132,16 @@ namespace ADBMailer
         {
             get => MailService.ParseString(GetSettings(KEY_LAST_TESTRECIPIENT));
             set => SaveSetting(KEY_LAST_TESTRECIPIENT, value == null ? "" : value.ToString());
+        }
+
+        public static string LastPdfNameField
+        {
+            get
+            {
+                var result = GetSettings(KEY_LAST_PDFNAMEFIELD);
+                return result.Length == 0 ? DEFAULT_LAST_PDFNAMEFIELD : result;
+            }
+            set => SaveSetting(KEY_LAST_PDFNAMEFIELD, value == null ? "" : value.ToString());
         }
 
         private static SmtpConfig? _smtp = null;
