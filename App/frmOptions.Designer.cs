@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbxSmtp = new System.Windows.Forms.GroupBox();
+            this.cbxCheckCertificateRevocation = new System.Windows.Forms.CheckBox();
             this.tbxSmtpDefaultSender = new System.Windows.Forms.TextBox();
             this.lblSmtpDefaultSender = new System.Windows.Forms.Label();
             this.lnkSmtpTest = new System.Windows.Forms.LinkLabel();
@@ -67,6 +68,7 @@
             // 
             this.gbxSmtp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxSmtp.Controls.Add(this.cbxCheckCertificateRevocation);
             this.gbxSmtp.Controls.Add(this.tbxSmtpDefaultSender);
             this.gbxSmtp.Controls.Add(this.lblSmtpDefaultSender);
             this.gbxSmtp.Controls.Add(this.lnkSmtpTest);
@@ -86,10 +88,20 @@
             this.gbxSmtp.Controls.Add(this.lblSmtpHost);
             this.gbxSmtp.Location = new System.Drawing.Point(12, 140);
             this.gbxSmtp.Name = "gbxSmtp";
-            this.gbxSmtp.Size = new System.Drawing.Size(562, 260);
+            this.gbxSmtp.Size = new System.Drawing.Size(648, 263);
             this.gbxSmtp.TabIndex = 1;
             this.gbxSmtp.TabStop = false;
             this.gbxSmtp.Text = "Server invio email";
+            // 
+            // cbxCheckCertificateRevocation
+            // 
+            this.cbxCheckCertificateRevocation.AutoSize = true;
+            this.cbxCheckCertificateRevocation.Location = new System.Drawing.Point(141, 225);
+            this.cbxCheckCertificateRevocation.Name = "cbxCheckCertificateRevocation";
+            this.cbxCheckCertificateRevocation.Size = new System.Drawing.Size(158, 19);
+            this.cbxCheckCertificateRevocation.TabIndex = 16;
+            this.cbxCheckCertificateRevocation.Text = "Verifica revoca certificato";
+            this.cbxCheckCertificateRevocation.UseVisualStyleBackColor = true;
             // 
             // tbxSmtpDefaultSender
             // 
@@ -98,7 +110,7 @@
             this.tbxSmtpDefaultSender.Location = new System.Drawing.Point(141, 22);
             this.tbxSmtpDefaultSender.Name = "tbxSmtpDefaultSender";
             this.tbxSmtpDefaultSender.PlaceholderText = "IndirizzoEmail oppure Nome <IndirizzoEmail>";
-            this.tbxSmtpDefaultSender.Size = new System.Drawing.Size(313, 23);
+            this.tbxSmtpDefaultSender.Size = new System.Drawing.Size(399, 23);
             this.tbxSmtpDefaultSender.TabIndex = 1;
             // 
             // lblSmtpDefaultSender
@@ -114,10 +126,10 @@
             // 
             this.lnkSmtpTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkSmtpTest.AutoSize = true;
-            this.lnkSmtpTest.Location = new System.Drawing.Point(446, 241);
+            this.lnkSmtpTest.Location = new System.Drawing.Point(532, 244);
             this.lnkSmtpTest.Name = "lnkSmtpTest";
             this.lnkSmtpTest.Size = new System.Drawing.Size(110, 15);
-            this.lnkSmtpTest.TabIndex = 16;
+            this.lnkSmtpTest.TabIndex = 17;
             this.lnkSmtpTest.TabStop = true;
             this.lnkSmtpTest.Text = "Invia email di prova";
             this.lnkSmtpTest.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkSmtpTest_LinkClicked);
@@ -128,7 +140,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxSmtpHelo.Location = new System.Drawing.Point(141, 196);
             this.tbxSmtpHelo.Name = "tbxSmtpHelo";
-            this.tbxSmtpHelo.Size = new System.Drawing.Size(313, 23);
+            this.tbxSmtpHelo.Size = new System.Drawing.Size(399, 23);
             this.tbxSmtpHelo.TabIndex = 15;
             // 
             // lblSmtpHelo
@@ -147,7 +159,7 @@
             this.tbxSmtpPassword.Location = new System.Drawing.Point(141, 167);
             this.tbxSmtpPassword.Name = "tbxSmtpPassword";
             this.tbxSmtpPassword.PasswordChar = '*';
-            this.tbxSmtpPassword.Size = new System.Drawing.Size(313, 23);
+            this.tbxSmtpPassword.Size = new System.Drawing.Size(399, 23);
             this.tbxSmtpPassword.TabIndex = 13;
             // 
             // tbxSmtpUsername
@@ -156,7 +168,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxSmtpUsername.Location = new System.Drawing.Point(141, 138);
             this.tbxSmtpUsername.Name = "tbxSmtpUsername";
-            this.tbxSmtpUsername.Size = new System.Drawing.Size(313, 23);
+            this.tbxSmtpUsername.Size = new System.Drawing.Size(399, 23);
             this.tbxSmtpUsername.TabIndex = 11;
             // 
             // lblSmtpPassword
@@ -185,7 +197,7 @@
             this.cbxSmtpAuth.FormattingEnabled = true;
             this.cbxSmtpAuth.Location = new System.Drawing.Point(141, 109);
             this.cbxSmtpAuth.Name = "cbxSmtpAuth";
-            this.cbxSmtpAuth.Size = new System.Drawing.Size(313, 23);
+            this.cbxSmtpAuth.Size = new System.Drawing.Size(399, 23);
             this.cbxSmtpAuth.TabIndex = 9;
             this.cbxSmtpAuth.SelectedIndexChanged += new System.EventHandler(this.cbxSmtpAuth_SelectedIndexChanged);
             // 
@@ -206,13 +218,13 @@
             this.cbxSmtpSecurity.FormattingEnabled = true;
             this.cbxSmtpSecurity.Location = new System.Drawing.Point(141, 80);
             this.cbxSmtpSecurity.Name = "cbxSmtpSecurity";
-            this.cbxSmtpSecurity.Size = new System.Drawing.Size(313, 23);
+            this.cbxSmtpSecurity.Size = new System.Drawing.Size(399, 23);
             this.cbxSmtpSecurity.TabIndex = 7;
             // 
             // nudSmtpPort
             // 
             this.nudSmtpPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudSmtpPort.Location = new System.Drawing.Point(501, 51);
+            this.nudSmtpPort.Location = new System.Drawing.Point(587, 51);
             this.nudSmtpPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -238,14 +250,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxSmtpHost.Location = new System.Drawing.Point(141, 51);
             this.tbxSmtpHost.Name = "tbxSmtpHost";
-            this.tbxSmtpHost.Size = new System.Drawing.Size(313, 23);
+            this.tbxSmtpHost.Size = new System.Drawing.Size(399, 23);
             this.tbxSmtpHost.TabIndex = 3;
             // 
             // lblSmtpPort
             // 
             this.lblSmtpPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSmtpPort.AutoSize = true;
-            this.lblSmtpPort.Location = new System.Drawing.Point(460, 54);
+            this.lblSmtpPort.Location = new System.Drawing.Point(546, 54);
             this.lblSmtpPort.Name = "lblSmtpPort";
             this.lblSmtpPort.Size = new System.Drawing.Size(35, 15);
             this.lblSmtpPort.TabIndex = 4;
@@ -272,7 +284,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(418, 406);
+            this.btnCancel.Location = new System.Drawing.Point(504, 453);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -282,7 +294,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(499, 406);
+            this.btnSave.Location = new System.Drawing.Point(585, 453);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
@@ -304,7 +316,7 @@
             this.gbxPdfGeneration.Controls.Add(this.lblPathSofficeCom);
             this.gbxPdfGeneration.Location = new System.Drawing.Point(12, 12);
             this.gbxPdfGeneration.Name = "gbxPdfGeneration";
-            this.gbxPdfGeneration.Size = new System.Drawing.Size(562, 122);
+            this.gbxPdfGeneration.Size = new System.Drawing.Size(648, 122);
             this.gbxPdfGeneration.TabIndex = 0;
             this.gbxPdfGeneration.TabStop = false;
             this.gbxPdfGeneration.Text = "Generazione PDF";
@@ -318,7 +330,7 @@
             this.cbxPdfGenerationLocale.FormattingEnabled = true;
             this.cbxPdfGenerationLocale.Location = new System.Drawing.Point(141, 22);
             this.cbxPdfGenerationLocale.Name = "cbxPdfGenerationLocale";
-            this.cbxPdfGenerationLocale.Size = new System.Drawing.Size(313, 23);
+            this.cbxPdfGenerationLocale.Size = new System.Drawing.Size(399, 23);
             this.cbxPdfGenerationLocale.TabIndex = 1;
             // 
             // lblPdfGenerationLocale
@@ -338,7 +350,7 @@
             this.cbxPdfGenerationWith.FormattingEnabled = true;
             this.cbxPdfGenerationWith.Location = new System.Drawing.Point(141, 51);
             this.cbxPdfGenerationWith.Name = "cbxPdfGenerationWith";
-            this.cbxPdfGenerationWith.Size = new System.Drawing.Size(313, 23);
+            this.cbxPdfGenerationWith.Size = new System.Drawing.Size(399, 23);
             this.cbxPdfGenerationWith.TabIndex = 3;
             this.cbxPdfGenerationWith.SelectedIndexChanged += new System.EventHandler(this.cbxPdfGenerationWith_SelectedIndexChanged);
             // 
@@ -355,7 +367,7 @@
             // 
             this.lnkPathSofficeCom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkPathSofficeCom.AutoSize = true;
-            this.lnkPathSofficeCom.Location = new System.Drawing.Point(410, 104);
+            this.lnkPathSofficeCom.Location = new System.Drawing.Point(496, 104);
             this.lnkPathSofficeCom.Name = "lnkPathSofficeCom";
             this.lnkPathSofficeCom.Size = new System.Drawing.Size(44, 15);
             this.lnkPathSofficeCom.TabIndex = 7;
@@ -367,7 +379,7 @@
             // btnPathSofficeCom
             // 
             this.btnPathSofficeCom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPathSofficeCom.Location = new System.Drawing.Point(460, 80);
+            this.btnPathSofficeCom.Location = new System.Drawing.Point(546, 80);
             this.btnPathSofficeCom.Name = "btnPathSofficeCom";
             this.btnPathSofficeCom.Size = new System.Drawing.Size(96, 23);
             this.btnPathSofficeCom.TabIndex = 6;
@@ -381,7 +393,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxPathSofficeCom.Location = new System.Drawing.Point(141, 80);
             this.tbxPathSofficeCom.Name = "tbxPathSofficeCom";
-            this.tbxPathSofficeCom.Size = new System.Drawing.Size(313, 23);
+            this.tbxPathSofficeCom.Size = new System.Drawing.Size(399, 23);
             this.tbxPathSofficeCom.TabIndex = 5;
             // 
             // lblPathSofficeCom
@@ -405,14 +417,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(586, 441);
+            this.ClientSize = new System.Drawing.Size(672, 488);
             this.Controls.Add(this.gbxPdfGeneration);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.gbxSmtp);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1500, 600);
-            this.MinimumSize = new System.Drawing.Size(400, 480);
+            this.MinimumSize = new System.Drawing.Size(400, 490);
             this.Name = "frmOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ADBMailer - Opzioni";
@@ -457,5 +469,6 @@
         private ComboBox cbxPdfGenerationWith;
         private ComboBox cbxPdfGenerationLocale;
         private Label lblPdfGenerationLocale;
+        private CheckBox cbxCheckCertificateRevocation;
     }
 }

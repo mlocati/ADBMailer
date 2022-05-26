@@ -98,6 +98,7 @@ namespace ADBMailer
             this.tbxSmtpUsername.Text = Options.Smtp.Username;
             this.tbxSmtpPassword.Text = Options.Smtp.Password;
             this.tbxSmtpHelo.Text = Options.Smtp.HeloDomain;
+            this.cbxCheckCertificateRevocation.Checked = Options.Smtp.CheckCertificateRevocation;
             var cultureInfos = CultureInfo.GetCultures(System.Globalization.CultureTypes.AllCultures);
             List<CultureInfoWrapper> wrappedCultureInfos = new(cultureInfos.Length);
             CultureInfo currentCultureInfo = Options.GeneratePdfLocale;
@@ -192,7 +193,8 @@ namespace ADBMailer
                 authenticationWrapper.Value,
                 username,
                 password,
-                heloDomain
+                heloDomain,
+                this.cbxCheckCertificateRevocation.Checked
             );
         }
 

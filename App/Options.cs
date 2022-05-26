@@ -26,6 +26,7 @@ namespace ADBMailer
         private const string KEY_SMTP_USERNAME = "SmtpUsername";
         private const string KEY_SMTP_PASSWORD = "SmtpPassword";
         private const string KEY_SMTP_HELODOMAIN = "SmtpHeloDomain";
+        private const string KEY_SMTP_CHECKCERTREVOCATION = "SmtpCheckCertRevocation";
         private const string KEY_GITHUB_TOKEN = "GithubToken";
 
         private static Configuration? _configFile = null;
@@ -193,7 +194,8 @@ namespace ADBMailer
                     authentication,
                     GetSettings(KEY_SMTP_USERNAME).Trim(),
                     GetSettings(KEY_SMTP_PASSWORD),
-                    GetSettings(KEY_SMTP_HELODOMAIN).Trim()
+                    GetSettings(KEY_SMTP_HELODOMAIN).Trim(),
+                    !"no".Equals(GetSettings(KEY_SMTP_CHECKCERTREVOCATION), StringComparison.OrdinalIgnoreCase)
                 );
                 _smtp = smtpConfig;
                 return _smtp;
@@ -208,6 +210,7 @@ namespace ADBMailer
                 SaveSetting(KEY_SMTP_USERNAME, value.Username);
                 SaveSetting(KEY_SMTP_PASSWORD, value.Password);
                 SaveSetting(KEY_SMTP_HELODOMAIN, value.HeloDomain);
+                SaveSetting(KEY_SMTP_CHECKCERTREVOCATION, value.CheckCertificateRevocation ? "yes" : "no");
                 _smtp = value;
             }
         }

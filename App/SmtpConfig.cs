@@ -143,8 +143,9 @@ namespace ADBMailer
         public readonly string Username;
         public readonly string Password;
         public readonly string HeloDomain;
+        public readonly bool CheckCertificateRevocation;
 
-        public SmtpConfig(MailboxAddress? defaultSender, string host, int port, Securities security, Authentications authentication, string username, string password, string heloDomain)
+        public SmtpConfig(MailboxAddress? defaultSender, string host, int port, Securities security, Authentications authentication, string username, string password, string heloDomain, bool checkCertificateRevocation)
         {
             this.DefaultSender = defaultSender;
             this.Host = host;
@@ -154,6 +155,7 @@ namespace ADBMailer
             this.Username = username;
             this.Password = password;
             this.HeloDomain = heloDomain;
+            this.CheckCertificateRevocation = checkCertificateRevocation;
         }
 
         public SmtpClient CreateClient()
@@ -187,6 +189,7 @@ namespace ADBMailer
             {
                 client.LocalDomain = this.HeloDomain;
             }
+            client.CheckCertificateRevocation = this.CheckCertificateRevocation;
             try
             {
                 client.Connect(this.Host, this.Port, SecurityAttribute.GetActualValue(this.Security));
