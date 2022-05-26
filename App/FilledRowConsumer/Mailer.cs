@@ -5,6 +5,7 @@ namespace ADBMailer.FilledRowConsumer
     internal class Mailer : IFilledRowConsumer
     {
         private readonly MailSender MailSender;
+        private readonly bool SenderInBcc;
         private readonly MailboxAddress From;
         private readonly String Subject;
         private readonly String Body;
@@ -21,9 +22,10 @@ namespace ADBMailer.FilledRowConsumer
 
         public string ProcessingWindowTitle => "Invio email";
 
-        public Mailer(MailSender mailSender, MailboxAddress from, string subject, string body, MailboxAddress? forceRecipient, int? forceDataRow)
+        public Mailer(MailSender mailSender, bool senderInBcc, MailboxAddress from, string subject, string body, MailboxAddress? forceRecipient, int? forceDataRow)
         {
             this.MailSender = mailSender;
+            this.SenderInBcc = senderInBcc;
             this.From = from;
             this.Subject = subject;
             this.Body = body;
@@ -36,6 +38,10 @@ namespace ADBMailer.FilledRowConsumer
             statusAdvancer("Creazione messaggio...");
             var message = new MimeMessage();
             message.From.Add(this.From);
+            if (this.SenderInBcc)
+            {
+                message.Bcc.Add(this.From);
+            }
             message.Subject = this.Subject;
             var builder = new BodyBuilder
             {

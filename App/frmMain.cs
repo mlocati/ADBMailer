@@ -64,6 +64,7 @@ namespace ADBMailer
             {
                 this.tbxEmailFrom.Text = Options.Smtp.DefaultSender.ToString();
             }
+            this.cbxSenderInBcc.Checked = Options.MailSenderInBcc;
         }
 
         private void tsbOptions_Click(object sender, EventArgs e)
@@ -217,7 +218,7 @@ namespace ADBMailer
                         return;
                     }
                 }
-                var consumer = new FilledRowConsumer.Mailer(mailSender, from, subject, body, overrideRecipient, testExcelDataRow);
+                var consumer = new FilledRowConsumer.Mailer(mailSender, this.cbxSenderInBcc.Checked, from, subject, body, overrideRecipient, testExcelDataRow);
                 this.Process(consumer, filler);
             }
             catch (Exception x)
@@ -508,6 +509,11 @@ namespace ADBMailer
                     }
                     break;
             }
+        }
+
+        private void cbxSenderInBcc_CheckedChanged(object sender, EventArgs e)
+        {
+            Options.MailSenderInBcc = this.cbxSenderInBcc.Checked;
         }
     }
 }

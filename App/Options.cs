@@ -18,6 +18,7 @@ namespace ADBMailer
         private const string KEY_KEY_GENERATELOCALE = "GeneratePdfLocale";
         private const string KEY_GENERATEPDFWITH = "GeneratePdfWith";
         private const string KEY_LIBREOFFICE_SOFFICECOMPATH = "LibreOfficeSofficePath";
+        private const string KEY_MAIL_SENDERINBCC = "MailSenderInBcc";
         private const string KEY_SMTP_DEFAULTSENDER = "SmtpDefaultSender";
         private const string KEY_SMTP_HOST = "SmtpHost";
         private const string KEY_SMTP_PORT = "SmtpPort";
@@ -143,6 +144,12 @@ namespace ADBMailer
                 return result.Length == 0 ? DEFAULT_LAST_PDFNAMEFIELD : result;
             }
             set => SaveSetting(KEY_LAST_PDFNAMEFIELD, value == null ? "" : value.ToString());
+        }
+
+        public static bool MailSenderInBcc
+        {
+            get => "yes".Equals(GetSettings(KEY_MAIL_SENDERINBCC), StringComparison.OrdinalIgnoreCase);
+            set => SaveSetting(KEY_MAIL_SENDERINBCC, value ? "yes" : "no");
         }
 
         private static SmtpConfig? _smtp = null;
