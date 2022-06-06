@@ -18,7 +18,7 @@ namespace ADBMailer.FilledRowConsumer
 
         public bool GeneratesPermamentFiles => false;
 
-        public bool UsePDFFilename => false;
+        public bool UsePDFFilename => true;
 
         public string ProcessingWindowTitle => "Invio email";
 
@@ -47,7 +47,7 @@ namespace ADBMailer.FilledRowConsumer
             {
                 TextBody = this.Body
             };
-            builder.Attachments.Add("Documento.pdf", pdfBytes, ContentType.Parse("application/pdf"));
+            builder.Attachments.Add(PDFFileName.BuildPDFFileName(filled, false, true), pdfBytes, ContentType.Parse("application/pdf"));
             message.Body = builder.ToMessageBody();
             if (this.ForceRecipient != null)
             {

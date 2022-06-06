@@ -1,7 +1,4 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
-
-namespace ADBMailer.FilledRowConsumer
+﻿namespace ADBMailer.FilledRowConsumer
 {
     internal class Saver : IFilledRowConsumer
     {
@@ -24,11 +21,7 @@ namespace ADBMailer.FilledRowConsumer
 
         public IFilledRowConsumer.Result Process(FieldFiller.Result filled, byte[] pdfBytes, IFilledRowConsumer.StatusAdvancer statusAdvancer)
         {
-            var pdfFilenameBase = FixPDFFilename(filled.PDFFileName);
-            if (pdfFilenameBase.Length == 0)
-            {
-                pdfFilenameBase = $"SenzaNome{filled.ExcelRow}";
-            }
+            var pdfFilenameBase = PDFFileName.BuildPDFFileName(filled, true, false);
             string pdfFilename;
             string fullPdfFilename;
             for (var i = 0; ; i++)
@@ -43,36 +36,6 @@ namespace ADBMailer.FilledRowConsumer
             File.WriteAllBytes(fullPdfFilename, pdfBytes);
             statusAdvancer($"PDF salvato con nome {pdfFilename}");
             return new IFilledRowConsumer.Result(new FileInfo(fullPdfFilename));
-        }
-
-        private static Regex? _fixPDFFilenameRegex = null;
-
-        private static Regex FixPDFFilenameRegex
-        {
-            get
-            {
-                if (_fixPDFFilenameRegex != null)
-                {
-                    return _fixPDFFilenameRegex;
-                }
-                var pattern = new StringBuilder("[");
-                pattern.Append(Regex.Escape("-"));
-                foreach (var c in Path.GetInvalidFileNameChars())
-                {
-                    pattern.Append(Regex.Escape(c.ToString()));
-                }
-                pattern.Append("]+");
-                return _fixPDFFilenameRegex = new Regex(pattern.ToString(), RegexOptions.CultureInvariant | RegexOptions.Compiled);
-            }
-        }
-
-        private static string FixPDFFilename(string? raw)
-        {
-            if (string.IsNullOrEmpty(raw))
-            {
-                return "";
-            }
-            return FixPDFFilenameRegex.Replace(raw, "-").Trim('-');
         }
     }
 }
