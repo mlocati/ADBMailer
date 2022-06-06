@@ -180,7 +180,7 @@
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:Michele Locati"
         "ARPHELPTELEPHONE" = "8:+39-3487227729"
         "ARPHELPLINK" = "8:https://github.com/mlocati/ADBMailer/issues"
