@@ -18,6 +18,9 @@ namespace ADBMailer
         private const string KEY_KEY_GENERATELOCALE = "GeneratePdfLocale";
         private const string KEY_GENERATEPDFWITH = "GeneratePdfWith";
         private const string KEY_LIBREOFFICE_SOFFICECOMPATH = "LibreOfficeSofficePath";
+        private const string KEY_MAIL_CC = "MailCc";
+        private const string KEY_MAIL_SENDERINCC = "MailSenderInCc";
+        private const string KEY_MAIL_BCC = "MailBcc";
         private const string KEY_MAIL_SENDERINBCC = "MailSenderInBcc";
         private const string KEY_SMTP_DEFAULTSENDER = "SmtpDefaultSender";
         private const string KEY_SMTP_HOST = "SmtpHost";
@@ -132,7 +135,7 @@ namespace ADBMailer
 
         public static MailboxAddress? LastTestRecipient
         {
-            get => MailService.ParseString(GetSettings(KEY_LAST_TESTRECIPIENT));
+            get => MailService.GetAddressFromString(GetSettings(KEY_LAST_TESTRECIPIENT));
             set => SaveSetting(KEY_LAST_TESTRECIPIENT, value == null ? "" : value.ToString());
         }
 
@@ -144,6 +147,24 @@ namespace ADBMailer
                 return result.Length == 0 ? DEFAULT_LAST_PDFNAMEFIELD : result;
             }
             set => SaveSetting(KEY_LAST_PDFNAMEFIELD, value == null ? "" : value.ToString());
+        }
+
+        public static MailboxAddressList MailCc
+        {
+            get => MailService.GetAddressesFromList(GetSettings(KEY_MAIL_CC)) ?? new();
+            set => SaveSetting(KEY_MAIL_CC, value.ToString());
+        }
+
+        public static bool MailSenderInCc
+        {
+            get => "yes".Equals(GetSettings(KEY_MAIL_SENDERINCC), StringComparison.OrdinalIgnoreCase);
+            set => SaveSetting(KEY_MAIL_SENDERINCC, value ? "yes" : "no");
+        }
+
+        public static MailboxAddressList MailBcc
+        {
+            get => MailService.GetAddressesFromList(GetSettings(KEY_MAIL_BCC)) ?? new();
+            set => SaveSetting(KEY_MAIL_BCC, value.ToString());
         }
 
         public static bool MailSenderInBcc
@@ -194,7 +215,7 @@ namespace ADBMailer
                     authentication = SmtpConfig.Authentications.Login;
                 }
                 var smtpConfig = new SmtpConfig(
-                    MailService.ParseString(GetSettings(KEY_SMTP_DEFAULTSENDER)),
+                    MailService.GetAddressFromString(GetSettings(KEY_SMTP_DEFAULTSENDER)),
                     GetSettings(KEY_SMTP_HOST).Trim(),
                     port,
                     security,

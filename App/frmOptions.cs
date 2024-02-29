@@ -143,7 +143,7 @@ namespace ADBMailer
             MailboxAddress? defaultSender = null;
             if (sDefaultSender != "")
             {
-                defaultSender = MailService.ParseString(sDefaultSender, out string reason);
+                defaultSender = MailService.GetAddressFromString(sDefaultSender, out string reason);
                 if (defaultSender == null)
                 {
                     MessageBox.Show(this, $"Il mittente predefinito non è valido:{Environment.NewLine}{reason}", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);

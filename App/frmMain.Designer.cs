@@ -28,416 +28,468 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.btnExcel = new System.Windows.Forms.Button();
-            this.btnWord = new System.Windows.Forms.Button();
-            this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
-            this.ofdWord = new System.Windows.Forms.OpenFileDialog();
-            this.ttTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbxWord = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbxExcel = new System.Windows.Forms.TextBox();
-            this.lblBody = new System.Windows.Forms.Label();
-            this.lblSubject = new System.Windows.Forms.Label();
-            this.lblSender = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbxEmailBody = new System.Windows.Forms.TextBox();
-            this.tbxEmailSubject = new System.Windows.Forms.TextBox();
-            this.tbxEmailFrom = new System.Windows.Forms.TextBox();
-            this.cbxSenderInBcc = new System.Windows.Forms.CheckBox();
-            this.tmrUpdateDocs = new System.Windows.Forms.Timer(this.components);
-            this.tsMainMenu = new ADBMailer.CustomControls.ToolStrip();
-            this.tsbMapFields = new System.Windows.Forms.ToolStripButton();
-            this.tssSep0 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbSavePdfTest = new System.Windows.Forms.ToolStripButton();
-            this.tsbEmailTest = new System.Windows.Forms.ToolStripButton();
-            this.tssSep1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbSavePdf = new System.Windows.Forms.ToolStripButton();
-            this.tsbEmailSend = new System.Windows.Forms.ToolStripButton();
-            this.tssSep2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbOptions = new System.Windows.Forms.ToolStripButton();
-            this.tssSep3 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbHelp = new System.Windows.Forms.ToolStripButton();
-            this.tsbAutoupdate = new System.Windows.Forms.ToolStripButton();
-            this.tlpMain.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tsMainMenu.SuspendLayout();
-            this.SuspendLayout();
+            btnExcel = new Button();
+            btnWord = new Button();
+            ofdExcel = new OpenFileDialog();
+            ofdWord = new OpenFileDialog();
+            ttTip = new ToolTip(components);
+            tableLayoutPanel3 = new TableLayoutPanel();
+            tbxWord = new TextBox();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            tbxExcel = new TextBox();
+            lblBody = new Label();
+            lblSubject = new Label();
+            lblSender = new Label();
+            label1 = new Label();
+            label2 = new Label();
+            tbxEmailBody = new TextBox();
+            tbxEmailSubject = new TextBox();
+            tbxEmailFrom = new TextBox();
+            tmrUpdateDocs = new System.Windows.Forms.Timer(components);
+            tsMainMenu = new CustomControls.ToolStrip();
+            tsbMapFields = new ToolStripButton();
+            tssSep0 = new ToolStripSeparator();
+            tsbSavePdfTest = new ToolStripButton();
+            tsbEmailTest = new ToolStripButton();
+            tssSep1 = new ToolStripSeparator();
+            tsbSavePdf = new ToolStripButton();
+            tsbEmailSend = new ToolStripButton();
+            tssSep2 = new ToolStripSeparator();
+            tsbOptions = new ToolStripButton();
+            tssSep3 = new ToolStripSeparator();
+            tsbHelp = new ToolStripButton();
+            tsbAutoupdate = new ToolStripButton();
+            lblEmailCC = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            tbxEmailCC = new TextBox();
+            cbxMailSenderInCc = new CheckBox();
+            lblEmailBCC = new Label();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            tbxEmailBCC = new TextBox();
+            cbxMailSenderInBcc = new CheckBox();
+            tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            tsMainMenu.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            SuspendLayout();
             // 
             // btnExcel
             // 
-            this.btnExcel.Location = new System.Drawing.Point(514, 3);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnExcel.TabIndex = 1;
-            this.btnExcel.Text = "Sfoglia...";
-            this.btnExcel.UseVisualStyleBackColor = true;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            btnExcel.Location = new Point(512, 3);
+            btnExcel.Name = "btnExcel";
+            btnExcel.Size = new Size(75, 23);
+            btnExcel.TabIndex = 1;
+            btnExcel.Text = "Sfoglia...";
+            btnExcel.UseVisualStyleBackColor = true;
+            btnExcel.Click += btnExcel_Click;
             // 
             // btnWord
             // 
-            this.btnWord.Location = new System.Drawing.Point(514, 3);
-            this.btnWord.Name = "btnWord";
-            this.btnWord.Size = new System.Drawing.Size(75, 23);
-            this.btnWord.TabIndex = 1;
-            this.btnWord.Text = "Sfoglia...";
-            this.btnWord.UseVisualStyleBackColor = true;
-            this.btnWord.Click += new System.EventHandler(this.btnWord_Click);
+            btnWord.Location = new Point(512, 3);
+            btnWord.Name = "btnWord";
+            btnWord.Size = new Size(75, 23);
+            btnWord.TabIndex = 1;
+            btnWord.Text = "Sfoglia...";
+            btnWord.UseVisualStyleBackColor = true;
+            btnWord.Click += btnWord_Click;
             // 
             // ofdExcel
             // 
-            this.ofdExcel.DefaultExt = "xlsx";
-            this.ofdExcel.Filter = "Fogli di Excel|*.xlsx;*.xlsm|Tutti i file|*.*";
-            this.ofdExcel.Title = "Apri foglio di Excel";
+            ofdExcel.DefaultExt = "xlsx";
+            ofdExcel.Filter = "Fogli di Excel|*.xlsx;*.xlsm|Tutti i file|*.*";
+            ofdExcel.Title = "Apri foglio di Excel";
             // 
             // ofdWord
             // 
-            this.ofdWord.DefaultExt = "docx";
-            this.ofdWord.Filter = "Documenti di Word|*.docx;*.docm|Tutti i file|*.*";
-            this.ofdWord.Title = "Apri documento di Word";
-            // 
-            // tlpMain
-            // 
-            this.tlpMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tlpMain.ColumnCount = 2;
-            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMain.Controls.Add(this.tableLayoutPanel3, 1, 1);
-            this.tlpMain.Controls.Add(this.tableLayoutPanel2, 1, 0);
-            this.tlpMain.Controls.Add(this.lblBody, 0, 5);
-            this.tlpMain.Controls.Add(this.lblSubject, 0, 4);
-            this.tlpMain.Controls.Add(this.lblSender, 0, 2);
-            this.tlpMain.Controls.Add(this.label1, 0, 0);
-            this.tlpMain.Controls.Add(this.label2, 0, 1);
-            this.tlpMain.Controls.Add(this.tbxEmailBody, 1, 5);
-            this.tlpMain.Controls.Add(this.tbxEmailSubject, 1, 4);
-            this.tlpMain.Controls.Add(this.tbxEmailFrom, 1, 2);
-            this.tlpMain.Controls.Add(this.cbxSenderInBcc, 1, 3);
-            this.tlpMain.Location = new System.Drawing.Point(12, 85);
-            this.tlpMain.Name = "tlpMain";
-            this.tlpMain.RowCount = 6;
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMain.Size = new System.Drawing.Size(719, 412);
-            this.tlpMain.TabIndex = 1;
+            ofdWord.DefaultExt = "docx";
+            ofdWord.Filter = "Documenti di Word|*.docx;*.docm|Tutti i file|*.*";
+            ofdWord.Title = "Apri documento di Word";
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.Controls.Add(this.btnWord, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tbxWord, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(124, 38);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(592, 29);
-            this.tableLayoutPanel3.TabIndex = 3;
+            tableLayoutPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel3.Controls.Add(btnWord, 1, 0);
+            tableLayoutPanel3.Controls.Add(tbxWord, 0, 0);
+            tableLayoutPanel3.Location = new Point(133, 125);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.Size = new Size(590, 29);
+            tableLayoutPanel3.TabIndex = 4;
             // 
             // tbxWord
             // 
-            this.tbxWord.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxWord.Location = new System.Drawing.Point(3, 3);
-            this.tbxWord.Name = "tbxWord";
-            this.tbxWord.PlaceholderText = "Seleziona un documento di Word o trascinalo in questa finestra";
-            this.tbxWord.ReadOnly = true;
-            this.tbxWord.Size = new System.Drawing.Size(505, 23);
-            this.tbxWord.TabIndex = 0;
-            this.tbxWord.Resize += new System.EventHandler(this.tbxWord_Resize);
+            tbxWord.Dock = DockStyle.Fill;
+            tbxWord.Location = new Point(3, 3);
+            tbxWord.Name = "tbxWord";
+            tbxWord.PlaceholderText = "Seleziona un documento di Word o trascinalo in questa finestra";
+            tbxWord.ReadOnly = true;
+            tbxWord.Size = new Size(503, 23);
+            tbxWord.TabIndex = 0;
+            tbxWord.Resize += tbxWord_Resize;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.tbxExcel, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnExcel, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(124, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(592, 29);
-            this.tableLayoutPanel2.TabIndex = 1;
+            tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel2.Controls.Add(tbxExcel, 0, 0);
+            tableLayoutPanel2.Controls.Add(btnExcel, 1, 0);
+            tableLayoutPanel2.Location = new Point(133, 90);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Size = new Size(590, 29);
+            tableLayoutPanel2.TabIndex = 2;
             // 
             // tbxExcel
             // 
-            this.tbxExcel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxExcel.Location = new System.Drawing.Point(3, 3);
-            this.tbxExcel.Name = "tbxExcel";
-            this.tbxExcel.PlaceholderText = "Seleziona un foglio di Excel o trascinalo in questa finestra";
-            this.tbxExcel.ReadOnly = true;
-            this.tbxExcel.Size = new System.Drawing.Size(505, 23);
-            this.tbxExcel.TabIndex = 0;
-            this.tbxExcel.Resize += new System.EventHandler(this.tbxExcel_Resize);
+            tbxExcel.Dock = DockStyle.Fill;
+            tbxExcel.Location = new Point(3, 3);
+            tbxExcel.Name = "tbxExcel";
+            tbxExcel.PlaceholderText = "Seleziona un foglio di Excel o trascinalo in questa finestra";
+            tbxExcel.ReadOnly = true;
+            tbxExcel.Size = new Size(503, 23);
+            tbxExcel.TabIndex = 0;
+            tbxExcel.Resize += tbxExcel_Resize;
             // 
             // lblBody
             // 
-            this.lblBody.AutoSize = true;
-            this.lblBody.Location = new System.Drawing.Point(3, 153);
-            this.lblBody.Name = "lblBody";
-            this.lblBody.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.lblBody.Size = new System.Drawing.Size(40, 25);
-            this.lblBody.TabIndex = 9;
-            this.lblBody.Text = "Corpo";
+            lblBody.AutoSize = true;
+            lblBody.Location = new Point(12, 283);
+            lblBody.Name = "lblBody";
+            lblBody.Padding = new Padding(0, 10, 0, 0);
+            lblBody.Size = new Size(40, 25);
+            lblBody.TabIndex = 13;
+            lblBody.Text = "Corpo";
             // 
             // lblSubject
             // 
-            this.lblSubject.AutoSize = true;
-            this.lblSubject.Location = new System.Drawing.Point(3, 124);
-            this.lblSubject.Name = "lblSubject";
-            this.lblSubject.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.lblSubject.Size = new System.Drawing.Size(51, 25);
-            this.lblSubject.TabIndex = 7;
-            this.lblSubject.Text = "Oggetto";
+            lblSubject.AutoSize = true;
+            lblSubject.Location = new Point(12, 259);
+            lblSubject.Name = "lblSubject";
+            lblSubject.Size = new Size(51, 15);
+            lblSubject.TabIndex = 11;
+            lblSubject.Text = "Oggetto";
             // 
             // lblSender
             // 
-            this.lblSender.AutoSize = true;
-            this.lblSender.Location = new System.Drawing.Point(3, 70);
-            this.lblSender.Name = "lblSender";
-            this.lblSender.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.lblSender.Size = new System.Drawing.Size(52, 25);
-            this.lblSender.TabIndex = 4;
-            this.lblSender.Text = "Mittente";
+            lblSender.AutoSize = true;
+            lblSender.Location = new Point(12, 160);
+            lblSender.Name = "lblSender";
+            lblSender.Size = new Size(52, 15);
+            lblSender.TabIndex = 5;
+            lblSender.Text = "Mittente";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.label1.Size = new System.Drawing.Size(83, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Foglio di Excel";
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 97);
+            label1.Name = "label1";
+            label1.Size = new Size(83, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Foglio di Excel";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 35);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.label2.Size = new System.Drawing.Size(115, 25);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Documento di Word";
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 132);
+            label2.Name = "label2";
+            label2.Size = new Size(115, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Documento di Word";
             // 
             // tbxEmailBody
             // 
-            this.tbxEmailBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxEmailBody.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbxEmailBody.Location = new System.Drawing.Point(124, 156);
-            this.tbxEmailBody.Multiline = true;
-            this.tbxEmailBody.Name = "tbxEmailBody";
-            this.tbxEmailBody.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbxEmailBody.Size = new System.Drawing.Size(592, 253);
-            this.tbxEmailBody.TabIndex = 10;
+            tbxEmailBody.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbxEmailBody.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxEmailBody.Location = new Point(133, 285);
+            tbxEmailBody.Multiline = true;
+            tbxEmailBody.Name = "tbxEmailBody";
+            tbxEmailBody.ScrollBars = ScrollBars.Both;
+            tbxEmailBody.Size = new Size(590, 225);
+            tbxEmailBody.TabIndex = 14;
             // 
             // tbxEmailSubject
             // 
-            this.tbxEmailSubject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxEmailSubject.Location = new System.Drawing.Point(124, 127);
-            this.tbxEmailSubject.Name = "tbxEmailSubject";
-            this.tbxEmailSubject.Size = new System.Drawing.Size(592, 23);
-            this.tbxEmailSubject.TabIndex = 8;
+            tbxEmailSubject.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxEmailSubject.Location = new Point(133, 256);
+            tbxEmailSubject.Name = "tbxEmailSubject";
+            tbxEmailSubject.Size = new Size(590, 23);
+            tbxEmailSubject.TabIndex = 12;
             // 
             // tbxEmailFrom
             // 
-            this.tbxEmailFrom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxEmailFrom.Location = new System.Drawing.Point(124, 73);
-            this.tbxEmailFrom.Name = "tbxEmailFrom";
-            this.tbxEmailFrom.PlaceholderText = "IndirizzoEmail oppure Nome <IndirizzoEmail>";
-            this.tbxEmailFrom.Size = new System.Drawing.Size(592, 23);
-            this.tbxEmailFrom.TabIndex = 5;
-            // 
-            // cbxSenderInBcc
-            // 
-            this.cbxSenderInBcc.AutoSize = true;
-            this.cbxSenderInBcc.Location = new System.Drawing.Point(124, 102);
-            this.cbxSenderInBcc.Name = "cbxSenderInBcc";
-            this.cbxSenderInBcc.Size = new System.Drawing.Size(219, 19);
-            this.cbxSenderInBcc.TabIndex = 6;
-            this.cbxSenderInBcc.Text = "invia email anche al mittente in CCN";
-            this.cbxSenderInBcc.UseVisualStyleBackColor = true;
-            this.cbxSenderInBcc.CheckedChanged += new System.EventHandler(this.cbxSenderInBcc_CheckedChanged);
+            tbxEmailFrom.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxEmailFrom.Location = new Point(133, 157);
+            tbxEmailFrom.Name = "tbxEmailFrom";
+            tbxEmailFrom.PlaceholderText = "IndirizzoEmail oppure Nome <IndirizzoEmail>";
+            tbxEmailFrom.Size = new Size(590, 23);
+            tbxEmailFrom.TabIndex = 6;
             // 
             // tmrUpdateDocs
             // 
-            this.tmrUpdateDocs.Interval = 10;
-            this.tmrUpdateDocs.Tick += new System.EventHandler(this.tmrUpdateDocs_Tick);
+            tmrUpdateDocs.Interval = 10;
+            tmrUpdateDocs.Tick += tmrUpdateDocs_Tick;
             // 
             // tsMainMenu
             // 
-            this.tsMainMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbMapFields,
-            this.tssSep0,
-            this.tsbSavePdfTest,
-            this.tsbEmailTest,
-            this.tssSep1,
-            this.tsbSavePdf,
-            this.tsbEmailSend,
-            this.tssSep2,
-            this.tsbOptions,
-            this.tssSep3,
-            this.tsbHelp,
-            this.tsbAutoupdate});
-            this.tsMainMenu.Location = new System.Drawing.Point(0, 0);
-            this.tsMainMenu.Name = "tsMainMenu";
-            this.tsMainMenu.Size = new System.Drawing.Size(743, 70);
-            this.tsMainMenu.TabIndex = 0;
-            this.tsMainMenu.Text = "Menu principale";
+            tsMainMenu.GripStyle = ToolStripGripStyle.Hidden;
+            tsMainMenu.Items.AddRange(new ToolStripItem[] { tsbMapFields, tssSep0, tsbSavePdfTest, tsbEmailTest, tssSep1, tsbSavePdf, tsbEmailSend, tssSep2, tsbOptions, tssSep3, tsbHelp, tsbAutoupdate });
+            tsMainMenu.Location = new Point(0, 0);
+            tsMainMenu.Name = "tsMainMenu";
+            tsMainMenu.Size = new Size(735, 70);
+            tsMainMenu.TabIndex = 0;
+            tsMainMenu.Text = "Menu principale";
             // 
             // tsbMapFields
             // 
-            this.tsbMapFields.Image = ((System.Drawing.Image)(resources.GetObject("tsbMapFields.Image")));
-            this.tsbMapFields.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbMapFields.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbMapFields.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
-            this.tsbMapFields.Name = "tsbMapFields";
-            this.tsbMapFields.Size = new System.Drawing.Size(84, 67);
-            this.tsbMapFields.Text = "Mappa campi";
-            this.tsbMapFields.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbMapFields.Click += new System.EventHandler(this.tsbMapFields_Click);
+            tsbMapFields.Image = (Image)resources.GetObject("tsbMapFields.Image");
+            tsbMapFields.ImageScaling = ToolStripItemImageScaling.None;
+            tsbMapFields.ImageTransparentColor = Color.Magenta;
+            tsbMapFields.Margin = new Padding(10, 1, 0, 2);
+            tsbMapFields.Name = "tsbMapFields";
+            tsbMapFields.Size = new Size(84, 67);
+            tsbMapFields.Text = "Mappa campi";
+            tsbMapFields.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbMapFields.Click += tsbMapFields_Click;
             // 
             // tssSep0
             // 
-            this.tssSep0.Name = "tssSep0";
-            this.tssSep0.Size = new System.Drawing.Size(6, 70);
+            tssSep0.Name = "tssSep0";
+            tssSep0.Size = new Size(6, 70);
             // 
             // tsbSavePdfTest
             // 
-            this.tsbSavePdfTest.Image = ((System.Drawing.Image)(resources.GetObject("tsbSavePdfTest.Image")));
-            this.tsbSavePdfTest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbSavePdfTest.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSavePdfTest.Name = "tsbSavePdfTest";
-            this.tsbSavePdfTest.Size = new System.Drawing.Size(87, 67);
-            this.tsbSavePdfTest.Text = "Vedi PDF (test)";
-            this.tsbSavePdfTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbSavePdfTest.Click += new System.EventHandler(this.tsbSavePdfTest_Click);
+            tsbSavePdfTest.Image = (Image)resources.GetObject("tsbSavePdfTest.Image");
+            tsbSavePdfTest.ImageScaling = ToolStripItemImageScaling.None;
+            tsbSavePdfTest.ImageTransparentColor = Color.Magenta;
+            tsbSavePdfTest.Name = "tsbSavePdfTest";
+            tsbSavePdfTest.Size = new Size(87, 67);
+            tsbSavePdfTest.Text = "Vedi PDF (test)";
+            tsbSavePdfTest.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbSavePdfTest.Click += tsbSavePdfTest_Click;
             // 
             // tsbEmailTest
             // 
-            this.tsbEmailTest.Image = ((System.Drawing.Image)(resources.GetObject("tsbEmailTest.Image")));
-            this.tsbEmailTest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEmailTest.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEmailTest.Name = "tsbEmailTest";
-            this.tsbEmailTest.Size = new System.Drawing.Size(98, 67);
-            this.tsbEmailTest.Text = "Invia email (test)";
-            this.tsbEmailTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbEmailTest.Click += new System.EventHandler(this.tsbEmailTest_Click);
+            tsbEmailTest.Image = (Image)resources.GetObject("tsbEmailTest.Image");
+            tsbEmailTest.ImageScaling = ToolStripItemImageScaling.None;
+            tsbEmailTest.ImageTransparentColor = Color.Magenta;
+            tsbEmailTest.Name = "tsbEmailTest";
+            tsbEmailTest.Size = new Size(98, 67);
+            tsbEmailTest.Text = "Invia email (test)";
+            tsbEmailTest.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbEmailTest.Click += tsbEmailTest_Click;
             // 
             // tssSep1
             // 
-            this.tssSep1.Name = "tssSep1";
-            this.tssSep1.Size = new System.Drawing.Size(6, 70);
+            tssSep1.Name = "tssSep1";
+            tssSep1.Size = new Size(6, 70);
             // 
             // tsbSavePdf
             // 
-            this.tsbSavePdf.Image = ((System.Drawing.Image)(resources.GetObject("tsbSavePdf.Image")));
-            this.tsbSavePdf.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbSavePdf.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSavePdf.Name = "tsbSavePdf";
-            this.tsbSavePdf.Size = new System.Drawing.Size(62, 67);
-            this.tsbSavePdf.Text = "Salva PDF";
-            this.tsbSavePdf.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbSavePdf.Click += new System.EventHandler(this.tsbSavePdf_Click);
+            tsbSavePdf.Image = (Image)resources.GetObject("tsbSavePdf.Image");
+            tsbSavePdf.ImageScaling = ToolStripItemImageScaling.None;
+            tsbSavePdf.ImageTransparentColor = Color.Magenta;
+            tsbSavePdf.Name = "tsbSavePdf";
+            tsbSavePdf.Size = new Size(62, 67);
+            tsbSavePdf.Text = "Salva PDF";
+            tsbSavePdf.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbSavePdf.Click += tsbSavePdf_Click;
             // 
             // tsbEmailSend
             // 
-            this.tsbEmailSend.Image = ((System.Drawing.Image)(resources.GetObject("tsbEmailSend.Image")));
-            this.tsbEmailSend.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEmailSend.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEmailSend.Name = "tsbEmailSend";
-            this.tsbEmailSend.Size = new System.Drawing.Size(68, 67);
-            this.tsbEmailSend.Text = "Invia email";
-            this.tsbEmailSend.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbEmailSend.Click += new System.EventHandler(this.tsbEmailSend_Click);
+            tsbEmailSend.Image = (Image)resources.GetObject("tsbEmailSend.Image");
+            tsbEmailSend.ImageScaling = ToolStripItemImageScaling.None;
+            tsbEmailSend.ImageTransparentColor = Color.Magenta;
+            tsbEmailSend.Name = "tsbEmailSend";
+            tsbEmailSend.Size = new Size(68, 67);
+            tsbEmailSend.Text = "Invia email";
+            tsbEmailSend.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbEmailSend.Click += tsbEmailSend_Click;
             // 
             // tssSep2
             // 
-            this.tssSep2.Name = "tssSep2";
-            this.tssSep2.Size = new System.Drawing.Size(6, 70);
+            tssSep2.Name = "tssSep2";
+            tssSep2.Size = new Size(6, 70);
             // 
             // tsbOptions
             // 
-            this.tsbOptions.Image = ((System.Drawing.Image)(resources.GetObject("tsbOptions.Image")));
-            this.tsbOptions.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbOptions.Margin = new System.Windows.Forms.Padding(7, 1, 0, 2);
-            this.tsbOptions.Name = "tsbOptions";
-            this.tsbOptions.Size = new System.Drawing.Size(52, 67);
-            this.tsbOptions.Text = "Opzioni";
-            this.tsbOptions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbOptions.ToolTipText = "Opzioni (F4)";
-            this.tsbOptions.Click += new System.EventHandler(this.tsbOptions_Click);
+            tsbOptions.Image = (Image)resources.GetObject("tsbOptions.Image");
+            tsbOptions.ImageScaling = ToolStripItemImageScaling.None;
+            tsbOptions.ImageTransparentColor = Color.Magenta;
+            tsbOptions.Margin = new Padding(7, 1, 0, 2);
+            tsbOptions.Name = "tsbOptions";
+            tsbOptions.Size = new Size(52, 67);
+            tsbOptions.Text = "Opzioni";
+            tsbOptions.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbOptions.ToolTipText = "Opzioni (F4)";
+            tsbOptions.Click += tsbOptions_Click;
             // 
             // tssSep3
             // 
-            this.tssSep3.Name = "tssSep3";
-            this.tssSep3.Size = new System.Drawing.Size(6, 70);
+            tssSep3.Name = "tssSep3";
+            tssSep3.Size = new Size(6, 70);
             // 
             // tsbHelp
             // 
-            this.tsbHelp.Image = ((System.Drawing.Image)(resources.GetObject("tsbHelp.Image")));
-            this.tsbHelp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbHelp.Name = "tsbHelp";
-            this.tsbHelp.Size = new System.Drawing.Size(52, 67);
-            this.tsbHelp.Text = "Guida";
-            this.tsbHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbHelp.ToolTipText = "Guida (F1)";
-            this.tsbHelp.Click += new System.EventHandler(this.tsbHelp_Click);
+            tsbHelp.Image = (Image)resources.GetObject("tsbHelp.Image");
+            tsbHelp.ImageScaling = ToolStripItemImageScaling.None;
+            tsbHelp.ImageTransparentColor = Color.Magenta;
+            tsbHelp.Name = "tsbHelp";
+            tsbHelp.Size = new Size(52, 67);
+            tsbHelp.Text = "Guida";
+            tsbHelp.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbHelp.ToolTipText = "Guida (F1)";
+            tsbHelp.Click += tsbHelp_Click;
             // 
             // tsbAutoupdate
             // 
-            this.tsbAutoupdate.Image = ((System.Drawing.Image)(resources.GetObject("tsbAutoupdate.Image")));
-            this.tsbAutoupdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbAutoupdate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAutoupdate.Name = "tsbAutoupdate";
-            this.tsbAutoupdate.Size = new System.Drawing.Size(83, 67);
-            this.tsbAutoupdate.Text = "Aggiorna app";
-            this.tsbAutoupdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbAutoupdate.Click += new System.EventHandler(this.tsbAutoupdate_Click);
+            tsbAutoupdate.Image = (Image)resources.GetObject("tsbAutoupdate.Image");
+            tsbAutoupdate.ImageScaling = ToolStripItemImageScaling.None;
+            tsbAutoupdate.ImageTransparentColor = Color.Magenta;
+            tsbAutoupdate.Name = "tsbAutoupdate";
+            tsbAutoupdate.Size = new Size(83, 67);
+            tsbAutoupdate.Text = "Aggiorna app";
+            tsbAutoupdate.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbAutoupdate.Click += tsbAutoupdate_Click;
+            // 
+            // lblEmailCC
+            // 
+            lblEmailCC.AutoSize = true;
+            lblEmailCC.Location = new Point(12, 191);
+            lblEmailCC.Name = "lblEmailCC";
+            lblEmailCC.Size = new Size(95, 15);
+            lblEmailCC.TabIndex = 7;
+            lblEmailCC.Text = "Destinatari in CC";
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.Controls.Add(tbxEmailCC, 0, 0);
+            tableLayoutPanel1.Controls.Add(cbxMailSenderInCc, 1, 0);
+            tableLayoutPanel1.Location = new Point(133, 186);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(590, 29);
+            tableLayoutPanel1.TabIndex = 8;
+            // 
+            // tbxEmailCC
+            // 
+            tbxEmailCC.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxEmailCC.Location = new Point(3, 3);
+            tbxEmailCC.Name = "tbxEmailCC";
+            tbxEmailCC.PlaceholderText = "IndirizzoEmail oppure Nome <IndirizzoEmail> (separa più indirizzi con virgole)";
+            tbxEmailCC.Size = new Size(457, 23);
+            tbxEmailCC.TabIndex = 0;
+            // 
+            // cbxMailSenderInCc
+            // 
+            cbxMailSenderInCc.AutoSize = true;
+            cbxMailSenderInCc.Location = new Point(466, 3);
+            cbxMailSenderInCc.Name = "cbxMailSenderInCc";
+            cbxMailSenderInCc.Padding = new Padding(0, 2, 0, 0);
+            cbxMailSenderInCc.Size = new Size(121, 21);
+            cbxMailSenderInCc.TabIndex = 1;
+            cbxMailSenderInCc.Text = "aggiungi mittente";
+            cbxMailSenderInCc.UseVisualStyleBackColor = true;
+            // 
+            // lblEmailBCC
+            // 
+            lblEmailBCC.AutoSize = true;
+            lblEmailBCC.Location = new Point(12, 226);
+            lblEmailBCC.Name = "lblEmailBCC";
+            lblEmailBCC.Size = new Size(104, 15);
+            lblEmailBCC.TabIndex = 9;
+            lblEmailBCC.Text = "Destinatari in CCN";
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel4.ColumnCount = 2;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel4.Controls.Add(tbxEmailBCC, 0, 0);
+            tableLayoutPanel4.Controls.Add(cbxMailSenderInBcc, 1, 0);
+            tableLayoutPanel4.Location = new Point(133, 221);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 1;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.Size = new Size(590, 29);
+            tableLayoutPanel4.TabIndex = 10;
+            // 
+            // tbxEmailBCC
+            // 
+            tbxEmailBCC.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxEmailBCC.Location = new Point(3, 3);
+            tbxEmailBCC.Name = "tbxEmailBCC";
+            tbxEmailBCC.PlaceholderText = "IndirizzoEmail oppure Nome <IndirizzoEmail> (separa più indirizzi con virgole)";
+            tbxEmailBCC.Size = new Size(457, 23);
+            tbxEmailBCC.TabIndex = 0;
+            // 
+            // cbxMailSenderInBcc
+            // 
+            cbxMailSenderInBcc.AutoSize = true;
+            cbxMailSenderInBcc.Location = new Point(466, 3);
+            cbxMailSenderInBcc.Name = "cbxMailSenderInBcc";
+            cbxMailSenderInBcc.Padding = new Padding(0, 2, 0, 0);
+            cbxMailSenderInBcc.Size = new Size(121, 21);
+            cbxMailSenderInBcc.TabIndex = 1;
+            cbxMailSenderInBcc.Text = "aggiungi mittente";
+            cbxMailSenderInBcc.UseVisualStyleBackColor = true;
+            cbxMailSenderInBcc.CheckedChanged += cbxMailSenderInBcc_CheckedChanged;
             // 
             // frmMain
             // 
-            this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 509);
-            this.Controls.Add(this.tsMainMenu);
-            this.Controls.Add(this.tlpMain);
-            this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(570, 320);
-            this.Name = "frmMain";
-            this.Text = "ADBMailer";
-            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.frmMain_DragDrop);
-            this.DragOver += new System.Windows.Forms.DragEventHandler(this.frmMain_DragOver);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyUp);
-            this.tlpMain.ResumeLayout(false);
-            this.tlpMain.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.tsMainMenu.ResumeLayout(false);
-            this.tsMainMenu.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AllowDrop = true;
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(735, 522);
+            Controls.Add(tbxEmailBody);
+            Controls.Add(lblBody);
+            Controls.Add(tableLayoutPanel3);
+            Controls.Add(lblSubject);
+            Controls.Add(tbxEmailSubject);
+            Controls.Add(tsMainMenu);
+            Controls.Add(lblEmailBCC);
+            Controls.Add(lblEmailCC);
+            Controls.Add(lblSender);
+            Controls.Add(tableLayoutPanel4);
+            Controls.Add(tableLayoutPanel1);
+            Controls.Add(tableLayoutPanel2);
+            Controls.Add(tbxEmailFrom);
+            Controls.Add(label1);
+            Controls.Add(label2);
+            KeyPreview = true;
+            MinimumSize = new Size(570, 320);
+            Name = "frmMain";
+            Text = "ADBMailer";
+            DragDrop += frmMain_DragDrop;
+            DragOver += frmMain_DragOver;
+            KeyUp += frmMain_KeyUp;
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
+            tsMainMenu.ResumeLayout(false);
+            tsMainMenu.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -447,7 +499,6 @@
         private OpenFileDialog ofdExcel;
         private OpenFileDialog ofdWord;
         private ToolTip ttTip;
-        private TableLayoutPanel tlpMain;
         private TextBox tbxEmailSubject;
         private TextBox tbxEmailBody;
         private Label lblSubject;
@@ -474,6 +525,13 @@
         private ToolStripSeparator tssSep3;
         private ToolStripButton tsbHelp;
         private ToolStripButton tsbAutoupdate;
-        private CheckBox cbxSenderInBcc;
+        private Label lblEmailCC;
+        private TableLayoutPanel tableLayoutPanel1;
+        private CheckBox cbxMailSenderInCc;
+        private TextBox tbxEmailCC;
+        private Label lblEmailBCC;
+        private TableLayoutPanel tableLayoutPanel4;
+        private TextBox tbxEmailBCC;
+        private CheckBox cbxMailSenderInBcc;
     }
 }

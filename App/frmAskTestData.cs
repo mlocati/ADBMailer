@@ -58,7 +58,7 @@ namespace ADBMailer
                     this.tbxRecipient.Focus();
                     return;
                 }
-                recipient = MailService.ParseString(rawRecipient, out string reason);
+                recipient = MailService.GetAddressFromString(rawRecipient, out string reason);
                 if (recipient == null)
                 {
                     MessageBox.Show(this, $"Il destinatario dell'email di prova non è valido:{Environment.NewLine}{reason}", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);

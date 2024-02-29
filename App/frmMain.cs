@@ -64,7 +64,10 @@ namespace ADBMailer
             {
                 this.tbxEmailFrom.Text = Options.Smtp.DefaultSender.ToString();
             }
-            this.cbxSenderInBcc.Checked = Options.MailSenderInBcc;
+            this.tbxEmailCC.Text = Options.MailCc.ToString();
+            this.cbxMailSenderInCc.Checked = Options.MailSenderInCc;
+            this.tbxEmailBCC.Text = Options.MailBcc.ToString();
+            this.cbxMailSenderInBcc.Checked = Options.MailSenderInBcc;
         }
 
         private void tsbOptions_Click(object sender, EventArgs e)
@@ -175,12 +178,36 @@ namespace ADBMailer
 
         private void Send(bool test)
         {
-            var from = MailService.ParseString(this.tbxEmailFrom.Text, out string reason);
+            var from = MailService.GetAddressFromString(this.tbxEmailFrom.Text, out string reason);
             if (from == null)
             {
                 MessageBox.Show(this, $"Specificare un indirizzo email del mittente valido.{Environment.NewLine}{Environment.NewLine}{reason}", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.tbxEmailFrom.Focus();
                 return;
+            }
+            var cc = MailService.GetAddressesFromList(this.tbxEmailCC.Text, out reason);
+            if (cc == null)
+            {
+                MessageBox.Show(this, $"Specificare un elenco di indirizzi email validi da usare in CC.{Environment.NewLine}{Environment.NewLine}{reason}", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.tbxEmailCC.Focus();
+                return;
+            }
+            Options.MailCc = cc;
+            if (this.cbxMailSenderInCc.Checked)
+            {
+                cc.Add(from);
+            }
+            var bcc = MailService.GetAddressesFromList(this.tbxEmailBCC.Text, out reason);
+            if (bcc == null)
+            {
+                MessageBox.Show(this, $"Specificare un elenco di indirizzi email validi da usare in CCN.{Environment.NewLine}{Environment.NewLine}{reason}", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.tbxEmailBCC.Focus();
+                return;
+            }
+            Options.MailBcc = bcc;
+            if (this.cbxMailSenderInBcc.Checked)
+            {
+                bcc.Add(from);
             }
             var subject = this.tbxEmailSubject.Text.Trim();
             if (subject.Length == 0)
@@ -218,7 +245,7 @@ namespace ADBMailer
                         return;
                     }
                 }
-                var consumer = new FilledRowConsumer.Mailer(mailSender, this.cbxSenderInBcc.Checked, from, subject, body, overrideRecipient, testExcelDataRow);
+                var consumer = new FilledRowConsumer.Mailer(mailSender, from, cc, bcc, subject, body, overrideRecipient, testExcelDataRow);
                 this.Process(consumer, filler);
             }
             catch (Exception x)
@@ -511,9 +538,14 @@ namespace ADBMailer
             }
         }
 
-        private void cbxSenderInBcc_CheckedChanged(object sender, EventArgs e)
+        private void cbxMailSenderInCc_CheckedChanged(object sender, EventArgs e)
         {
-            Options.MailSenderInBcc = this.cbxSenderInBcc.Checked;
+            Options.MailSenderInCc = this.cbxMailSenderInCc.Checked;
+        }
+
+        private void cbxMailSenderInBcc_CheckedChanged(object sender, EventArgs e)
+        {
+            Options.MailSenderInBcc = this.cbxMailSenderInBcc.Checked;
         }
     }
 }

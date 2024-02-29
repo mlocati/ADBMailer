@@ -198,7 +198,7 @@ namespace ADBMailer
                 {
                     continue;
                 }
-                var address = MailService.ParseString(rawAddress, out string reason);
+                var address = MailService.GetAddressFromString(rawAddress, out string reason);
                 if (address == null)
                 {
                     warningsListener?.Invoke($"L'indirizzo email {rawAddress} non è valido:{Environment.NewLine}{reason}", excelRow, field.Column);

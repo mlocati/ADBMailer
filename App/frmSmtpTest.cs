@@ -65,7 +65,7 @@ namespace ADBMailer
                 this.tbxSender.Focus();
                 return;
             }
-            MailboxAddress? from = MailService.ParseString(sFrom, out string reason);
+            MailboxAddress? from = MailService.GetAddressFromString(sFrom, out string reason);
             if (from == null)
             {
                 MessageBox.Show(this, $"Il mittente dell'email di prova non è valido:{Environment.NewLine}{reason}", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -79,7 +79,7 @@ namespace ADBMailer
                 this.tbxRecipient.Focus();
                 return;
             }
-            MailboxAddress? to = MailService.ParseString(sTo, out reason);
+            MailboxAddress? to = MailService.GetAddressFromString(sTo, out reason);
             if (to == null)
             {
                 MessageBox.Show(this, $"Il destinatario dell'email di prova non è valido:{Environment.NewLine}{reason}", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
