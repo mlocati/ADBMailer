@@ -172,13 +172,28 @@
         {
             var font = e.Font ?? this.lsbField.Font;
             var item = this.lsbField.Items[e.Index];
+            bool disposeFont = false;
             if (this.ShouldHighlightFieldItem(item))
             {
                 font = new Font(font, FontStyle.Bold);
+                disposeFont = true;
             }
-            e.DrawBackground();
-            e.Graphics.DrawString(item.ToString(), font, new SolidBrush(e.ForeColor), e.Bounds);
-            e.DrawFocusRectangle();
+            try
+            {
+                e.DrawBackground();
+                using (var brush = new SolidBrush(e.ForeColor))
+                {
+                    e.Graphics.DrawString(item.ToString(), font, brush, e.Bounds);
+                }
+                e.DrawFocusRectangle();
+            }
+            finally
+            {
+                if (disposeFont)
+                {
+                    font.Dispose();
+                }
+            }
         }
     }
 }

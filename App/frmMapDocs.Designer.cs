@@ -42,6 +42,7 @@
             // lsbField
             // 
             this.lsbField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsbField.DrawMode = DrawMode.OwnerDrawFixed;
             this.lsbField.FormattingEnabled = true;
             this.lsbField.IntegralHeight = false;
             this.lsbField.ItemHeight = 15;
