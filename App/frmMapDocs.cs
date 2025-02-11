@@ -195,5 +195,33 @@
                 }
             }
         }
+
+        private void lsbField_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            if (e.Index < 0)
+            {
+                return;
+            }
+            var item = this.lsbField.Items[e.Index];
+            var font = this.lsbField.Font;
+            bool disposeFont = false;
+            if (this.ShouldHighlightFieldItem(item))
+            {
+                font = new Font(font, FontStyle.Bold);
+                disposeFont = true;
+            }
+            try
+            {
+                var textSize = e.Graphics.MeasureString(item.ToString(), font);
+                e.ItemHeight = (int)Math.Ceiling(textSize.Height);
+            }
+            finally
+            {
+                if (disposeFont)
+                {
+                    font.Dispose();
+                }
+            }
+        }
     }
 }

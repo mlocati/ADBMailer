@@ -42,7 +42,7 @@
             // lsbField
             // 
             this.lsbField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsbField.DrawMode = DrawMode.OwnerDrawFixed;
+            this.lsbField.DrawMode = DrawMode.OwnerDrawVariable;
             this.lsbField.FormattingEnabled = true;
             this.lsbField.IntegralHeight = false;
             this.lsbField.ItemHeight = 15;
@@ -51,6 +51,7 @@
             this.lsbField.Size = new System.Drawing.Size(382, 351);
             this.lsbField.TabIndex = 1;
             this.lsbField.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lsbField_DrawItem);
+            this.lsbField.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.lsbField_MeasureItem);
             this.lsbField.SelectedIndexChanged += new System.EventHandler(this.lsbField_SelectedIndexChanged);
             // 
             // lblTo
