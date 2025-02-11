@@ -237,6 +237,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7F0EB227381C41508DE87427FB945E92"
+            {
+            "Name" = "8:ADBMailer"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:32512"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_29E287A5217745F18E9F5D59A78A06E4"
+            "Folder" = "8:_6739192619354BFF940C8264B452708D"
+            "WorkingFolder" = "8:_015C8654122544D3A6071621454C9CC9"
+            "Icon" = "8:_29E287A5217745F18E9F5D59A78A06E4"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9D19395C1095433299C2371303595966"
             {
             "Name" = "8:ADBMailer"
