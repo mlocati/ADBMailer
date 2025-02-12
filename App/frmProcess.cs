@@ -189,17 +189,17 @@ namespace ADBMailer
                     return;
                 }
 
-                var changer = delegate ()
+                void changer()
                 {
                     this.PropertyChanged(this, new PropertyChangedEventArgs(null));
-                };
+                }
                 if (this.Form.InvokeRequired)
                 {
                     this.Form.Invoke(changer);
                 }
                 else
                 {
-                    changer.Invoke();
+                    changer();
                 }
             }
 
@@ -382,7 +382,7 @@ namespace ADBMailer
                             return;
                         }
                         line.Update("Conversione da Word a PDF...");
-                        byte[] pdfBytes = this.WordConverter.ConvertToPDF(filled.FilledWordDocument);
+                        byte[] pdfBytes = this.WordConverter.ConvertToPDF(filled.FilledWordDocument, Options.PdfQuality);
                         if (this.bgwProcess.CancellationPending)
                         {
                             line.Update("Operazione interrotta.", ProcessingLine.Statuses.Failed);

@@ -1,6 +1,7 @@
 ﻿using MimeKit;
 using System.Diagnostics;
 using System.Globalization;
+using static ADBMailer.WordConverter.IWordConverter;
 
 namespace ADBMailer
 {
@@ -20,6 +21,23 @@ namespace ADBMailer
             public override string ToString()
             {
                 return this.Name;
+            }
+        }
+
+        private class PDFQualityWrapper
+        {
+            public readonly PDFQuality Value;
+            public readonly string DisplayName;
+
+            public PDFQualityWrapper(PDFQuality value, string displayName)
+            {
+                this.Value = value;
+                this.DisplayName = displayName;
+            }
+
+            public override string ToString()
+            {
+                return this.DisplayName;
             }
         }
 
@@ -129,6 +147,25 @@ namespace ADBMailer
             });
             this.cbxPdfGenerationLocale.Items.AddRange(wrappedCultureInfos.ToArray());
             this.cbxPdfGenerationLocale.SelectedItem = currentWrappedCultureInfo;
+            this.cbxPdfQuality.Items.Clear();
+            var pdfQualityItems = new List<PDFQualityWrapper>(new[]
+            {
+                new PDFQualityWrapper(PDFQuality.PreferSizeOverQuality, "Dimensioni minori, qualità inferiore"),
+                new PDFQualityWrapper(PDFQuality.PreferQualityOverSize, "Qualità superiore, dimensioni maggiori")
+            });
+            PDFQualityWrapper? pdfQuality = null;
+            foreach (var i in pdfQualityItems)
+            {
+                if (i.Value == Options.PdfQuality)
+                {
+                    pdfQuality = i;
+                    break;
+                }
+            }
+            pdfQuality ??= pdfQualityItems[0];
+            this.cbxPdfQuality.Items.AddRange(pdfQualityItems.ToArray());
+            this.cbxPdfQuality.SelectedItem = pdfQuality;
+            this.cbxPdfGenerationWith_SelectedIndexChanged(this, EventArgs.Empty);
         }
 
         private void cbxSmtpAuth_SelectedIndexChanged(object sender, EventArgs e)
@@ -217,6 +254,11 @@ namespace ADBMailer
                 this.cbxPdfGenerationLocale.Focus();
                 return;
             }
+            if (this.cbxPdfQuality.SelectedItem is not PDFQualityWrapper pdfQuality)
+            {
+                this.cbxPdfQuality.Focus();
+                return;
+            }
             string generatePdfWith = this.cbxPdfGenerationWith.SelectedItem as string ?? "";
             var sofficeBin = this.tbxPathSofficeCom.Text.Trim();
             switch (generatePdfWith)
@@ -258,6 +300,7 @@ namespace ADBMailer
             }
             Options.GeneratePdfLocale = wrappedCultureInfo.Value;
             Options.GeneratePdfWith = generatePdfWith;
+            Options.PdfQuality = pdfQuality.Value;
             Options.LibreOfficeSofficeComPath = sofficeBin;
             Options.Smtp = smtpConfig;
             this.DialogResult = DialogResult.OK;
@@ -285,7 +328,7 @@ namespace ADBMailer
 
         private void cbxPdfGenerationWith_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.lnkPathSofficeCom.Visible = this.btnPathSofficeCom.Visible = this.tbxPathSofficeCom.Visible = this.lblPathSofficeCom.Visible = Options.GENERATEPDFWITH_LIBREOFFICE.Equals(this.cbxPdfGenerationWith.SelectedItem);
+            this.pnlConfigureSoffice.Visible = Options.GENERATEPDFWITH_LIBREOFFICE.Equals(this.cbxPdfGenerationWith.SelectedItem);
         }
     }
 }

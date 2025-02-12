@@ -19,7 +19,7 @@ namespace ADBMailer.WordConverter
             this.SofficeComPath = sofficeComPath;
         }
 
-        public byte[] ConvertToPDF(string docFile)
+        public byte[] ConvertToPDF(string docFile, IWordConverter.PDFQuality quality)
         {
             string stdOut;
             string stdErr;
@@ -47,11 +47,7 @@ namespace ADBMailer.WordConverter
                     UseShellExecute = false,
                     WindowStyle = ProcessWindowStyle.Hidden,
                 };
-                var process = Process.Start(psi);
-                if (process == null)
-                {
-                    throw new Exception("Impossibile avviare il processo di creazione del file PDF");
-                }
+                var process = Process.Start(psi) ?? throw new Exception("Impossibile avviare il processo di creazione del file PDF");
                 try
                 {
                     process.WaitForExit();

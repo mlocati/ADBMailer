@@ -9,11 +9,11 @@
             get => this._app ??= new MicrosoftWordApp();
         }
 
-        public byte[] ConvertToPDF(string docFile)
+        public byte[] ConvertToPDF(string docFile, IWordConverter.PDFQuality quality)
         {
             using var document = this.App.Open(docFile);
             var pdfFile = Program.Temp.GenerateNewFileName("pdf");
-            document.ConvertToPDF(pdfFile);
+            document.ConvertToPDF(pdfFile, quality);
             try
             {
                 return File.ReadAllBytes(pdfFile);

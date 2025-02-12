@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using ADBMailer.WordConverter;
+using Microsoft.Win32;
 using MimeKit;
 using System.Configuration;
 using System.Globalization;
@@ -18,6 +19,7 @@ namespace ADBMailer
         private const string KEY_KEY_GENERATELOCALE = "GeneratePdfLocale";
         private const string KEY_GENERATEPDFWITH = "GeneratePdfWith";
         private const string KEY_LIBREOFFICE_SOFFICECOMPATH = "LibreOfficeSofficePath";
+        private const string KEY_PDF_QUALITY = "PdfQuality";
         private const string KEY_MAIL_CC = "MailCc";
         private const string KEY_MAIL_SENDERINCC = "MailSenderInCc";
         private const string KEY_MAIL_BCC = "MailBcc";
@@ -94,6 +96,20 @@ namespace ADBMailer
                 };
             }
             set => SaveSetting(KEY_GENERATEPDFWITH, value);
+        }
+
+        public static IWordConverter.PDFQuality PdfQuality
+        {
+            get
+            {
+                var value = GetSettings(KEY_PDF_QUALITY);
+                if (Enum.TryParse(value, out IWordConverter.PDFQuality res))
+                {
+                    return res;
+                }
+                return IWordConverter.PDFQuality.PreferSizeOverQuality;
+            }
+            set => SaveSetting(KEY_PDF_QUALITY, value.ToString());
         }
 
         public static string LibreOfficeSofficeComPath

@@ -49,10 +49,17 @@ namespace ADBMailer.WordConverter
                 this.DocType = docType;
             }
 
-            public void ConvertToPDF(string pdfFile)
+            public void ConvertToPDF(string pdfFile, IWordConverter.PDFQuality quality)
             {
                 try
                 {
+                    var optimizeFor = quality switch
+                    {
+                        IWordConverter.PDFQuality.PreferSizeOverQuality => WdExportOptimizeFor.wdExportOptimizeForOnScreen,
+                        IWordConverter.PDFQuality.PreferQualityOverSize => WdExportOptimizeFor.wdExportOptimizeForPrint,
+                        _ => WdExportOptimizeFor.wdExportOptimizeForOnScreen,
+                    };
+
                     // https://docs.microsoft.com/en-us/office/vba/api/word.document.exportasfixedformat
                     this.DocType.InvokeMember("ExportAsFixedFormat", BindingFlags.InvokeMethod | BindingFlags.Instance, null, this.Doc, new object[] {
                         // OutputFileName
@@ -62,7 +69,7 @@ namespace ADBMailer.WordConverter
                         // OpenAfterExport
                         false,
                         // OptimizeFor
-                        WdExportOptimizeFor.wdExportOptimizeForOnScreen,
+                        optimizeFor,
                     });
                 }
                 catch (Exception x)
@@ -92,23 +99,14 @@ namespace ADBMailer.WordConverter
 
         public MicrosoftWordApp()
         {
-            var wordType = GetWordType();
-            if (wordType == null)
-            {
-                throw new Exception("Microsoft Word non è installato.");
-            }
-            var word = Activator.CreateInstance(wordType);
-            if (word == null)
-            {
-                throw new Exception("Impossibile avviare Microsoft Word");
-            }
+            var wordType = GetWordType() ?? throw new Exception("Microsoft Word non è installato.");
+            var word = Activator.CreateInstance(wordType) ?? throw new Exception("Impossibile avviare Microsoft Word");
             try
             {
                 // https://docs.microsoft.com/en-us/office/vba/api/word.application.visible
                 wordType.InvokeMember("Visible", BindingFlags.SetProperty | BindingFlags.Instance, null, word, new object[] { false });
                 // https://docs.microsoft.com/en-us/office/vba/api/word.application.documents
-                var wordDocuments = wordType.InvokeMember("Documents", BindingFlags.GetProperty | BindingFlags.Instance, null, word, null);
-                if (wordDocuments == null) throw new Exception("Impossibile ottenere l'oggetto Documents di Microsoft Word");
+                var wordDocuments = wordType.InvokeMember("Documents", BindingFlags.GetProperty | BindingFlags.Instance, null, word, null) ?? throw new Exception("Impossibile ottenere l'oggetto Documents di Microsoft Word");
                 var wordDocumentsType = wordDocuments.GetType();
                 this.WordType = wordType;
                 this.Word = word;
@@ -136,11 +134,7 @@ namespace ADBMailer.WordConverter
                     true,
                     // AddToRecentFiles
                     false,
-                });
-                if (document == null)
-                {
-                    throw new Exception("Errore non specificato");
-                }
+                }) ?? throw new Exception("Errore non specificato");
                 return new Document(document);
             }
             catch (Exception x)

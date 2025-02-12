@@ -4,6 +4,12 @@ namespace ADBMailer
 {
     public partial class frmAskTestData : Form
     {
+        public enum Reason
+        {
+            SendEmail,
+            ViewPDF,
+        }
+
         public class UserResult
         {
             public readonly int ExcelDataRow;
@@ -19,14 +25,24 @@ namespace ADBMailer
         public UserResult? Result = null;
         private readonly bool AskRecipient;
 
-        public frmAskTestData(int firstExcelDataRow, int lastExcelDataRow, bool askRecipient)
+        public frmAskTestData(int firstExcelDataRow, int lastExcelDataRow, Reason reason)
         {
             InitializeComponent();
             if (Program.ExeIcon != null)
             {
                 this.Icon = Program.ExeIcon;
             }
-            this.AskRecipient = askRecipient;
+            switch (reason)
+            {
+                case Reason.SendEmail:
+                    this.Text = "ADBMailer - Invio email di prova";
+                    break;
+
+                case Reason.ViewPDF:
+                    this.Text = "ADBMailer - Vedi PDF";
+                    break;
+            }
+            this.AskRecipient = reason == Reason.SendEmail;
             this.nudExcelRow.Minimum = decimal.MinValue;
             this.nudExcelRow.Maximum = decimal.MaxValue;
             this.nudExcelRow.Value = firstExcelDataRow;
